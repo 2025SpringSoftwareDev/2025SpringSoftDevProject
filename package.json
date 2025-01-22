@@ -1,0 +1,24 @@
+{
+  "name": "2025springsoftdevproject",
+  "version": "1.0.0",
+  "description": "Project Members: Carter Plenge, Jake, Landon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject/issues"
+  },
+  "homepage": "https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pug": "^3.0.3"
+  }
+}

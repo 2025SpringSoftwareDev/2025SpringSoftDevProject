@@ -1,1 +1,29 @@
-*.env
+# Ignore node_modules
+node_modules/
+
+# Ignore environment folder
+env/
+
+# Ignore log files
+*.log
+npm-debug.log*
+
+# Ignore package-lock if intentionally omitted
+# Uncomment the line below if you decide to ignore package-lock.json
+# package-lock.json
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore build artifacts
+dist/
+build/
+
+# Ignore temp files
+*.tmp
+*.temp
