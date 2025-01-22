@@ -1,5 +1,5 @@
 # 2025SpringSoftDevProject
-Project Members: Carter Plenge, Jake, Landon
+Project Members: Carter Plenge, Jake Schellhorn, Landon
 
 ## We will be making a web page and app for a restaurant. 
 
