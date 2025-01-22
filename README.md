@@ -3,21 +3,44 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
 ## We will be making a web page and app for a restaurant. 
 
-### Requirements
-- Users must be able to access/see the menu from the website.
-- Users should be able to make reservations from the website.
-- Employees should be able to see reservations and plan accordingly.
-- Employees should be able to see their hours/shifts
-- supervisors should be able to make menu adjustments
-- Supervisors should be able to update inventory 
+### User Stories grouped by key features:
+________________________________________
+#### Customer-Facing Features
+1. Restaurant Information and Menu
+•	As a customer, I want to view the restaurant’s contact information, operating hours, and location so I can easily reach or visit the restaurant.
+•	As a customer, I want to browse the menu with detailed descriptions and images of dishes so I can decide what to order.
+•	As a customer, I want to filter the menu by dietary preferences (e.g., vegetarian, gluten-free) so I can quickly find suitable options.
+2. Reservation System
+•	As a customer, I want to check table availability for a specific date and time so I can plan my visit accordingly.
+•	As a customer, I want to book a table online and receive a confirmation so I can avoid waiting when I arrive.
+3. Payment Information
+•	As a customer, I want to securely save my payment details so I can quickly pay for orders in the future.
+•	As a customer, I want multiple payment options (e.g., credit card, digital wallets) so I can pay in my preferred way.
+4. Order Tracking
+•	As a customer, I want to place an order online for pickup or delivery so I can enjoy the restaurant’s food at my convenience.
+•	As a customer, I want to track the status of my delivery order in real-time so I know when to expect it.
 
-### Sub-objectives
-- Users should be allowed to make accounts to make future reservations easier. 
-- The website should be responsive to the maximum capacity of restaurants to prevent overbooking reservations. 
-- Users should be able to reserve their preference for the table. (booth/table/bar/etc)
-- The website should have an interactive display of all reservations and locations to inform employees of available tables and reservations easily
-- Responsive menu, adjust calories ect. if they order a burger without cheese.
-- app
+5. Rewards Program
+•	As a customer, I want to sign up for a rewards program so I can earn points for my purchases.
+•	As a customer, I want to view my reward points balance so I know when I can redeem them.
+
+________________________________________
+#### Staff and Manager Features
+1. Menu and Inventory Management
+•	As a manager, I want to update the menu with new items or prices so the menu is always accurate.
+•	As a manager, I want to track inventory levels and receive alerts for low-stock items so I can prevent shortages.
+2. Scheduling and Employment Management
+•	As a staff member, I want to view my work schedule so I know when I am expected to work.
+•	As a manager, I want to assign shifts and notify staff of changes so I can ensure proper staffing at all times.
+3. Table Management
+•	As a staff member, I want to view current table assignments and reservations so I can efficiently manage seating.
+•	As a manager, I want to adjust table layouts and availability in real-time to accommodate varying customer demands.
+________________________________________
+#### Admin Features
+1.	Staff and Sale Management
+•	As an admin, I want to manage user roles and permissions (e.g., customer, staff, manager) so each user has access to the appropriate features.
+•	As an admin, I want to generate reports on sales, customer activity, and inventory so I can make informed business decisions.
+
 
 
 ## Project Architecture. 
