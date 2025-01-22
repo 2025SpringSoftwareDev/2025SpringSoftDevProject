@@ -29,7 +29,7 @@ Project Members: Carter Plenge, Jake, Landon
 2. input the following commands
 ```
 ### Cloning the repo
-git clone https://github.com/CarterPlenge/2025SpringSoftDevProject.git
+git clone https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject.git
 
 # Navigate to the project folder
 cd 2025SpringSoftDevProject
