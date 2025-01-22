@@ -44,7 +44,10 @@ python -m venv env
 pip install -r requirements.txt
 ```
 3. when adding new packages use ```pip freeze > requirements.txt``` to update the requirements.txt
-
+4. wait all the env stuff is irrelevant because we probably won't be using Python. Just js and pug.
+5. install node ig.
+6. unless we wanna do something different.
+   
 ### Merge Conflicts
 good luck lol
 
@@ -69,5 +72,6 @@ good luck lol
 
 ## Notes: 
 - None of this has been confirmed and reviewed by the group as a whole.
-- If there is anything incorrect in this read me then fix it. 
+- If there is anything incorrect in this read me then fix it.
+- The first person to commit a secret will be sacrificed.
 - May we all be blessed with many naps and colorful crayons.
