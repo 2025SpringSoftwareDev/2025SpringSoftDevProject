@@ -38,22 +38,22 @@ python -m venv env
 pip install -r requirements.txt
 ```
 
-## Merge Conflicts
+### Merge Conflicts
 good luck lol
 
-## Branches
+### Branches
 - Given the scale of the project we can get away without using branches but if you guys want the practice then here's how we do it. 
 - We can use branches to develop features then merge the branch to main once the feature is completed. 
 - This allows us to reduce merge conflicts and avoid convoluting the main branch's comment history.
-### Creating a new branch.
+#### Creating a new branch.
   ```
   git checkout -b <branch-name>
   ```
-### Changing a branch.
+#### Changing a branch.
   ```
   git checkout <branch-name>
   ```
-### Creating a pull request.
+#### Creating a pull request.
 1. Ensure you pushed and tested all changes
 2. Go to the GitHub repo page and click "Pull request"
 3. Select your branch as the source and the main branch as the destination
