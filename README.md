@@ -31,12 +31,19 @@ Project Members: Carter Plenge, Jake, Landon
 ### Cloning the repo
 git clone https://github.com/CarterPlenge/2025SpringSoftDevProject.git
 
+# Navigate to the project folder
+cd 2025SpringSoftDevProject
+
 # Set up a virtual environment named env
 python -m venv env
+
+# Activate the venv (windows only)
+.\env\Scripts\activate
 
 # Install packages (we don't have any packages right now)
 pip install -r requirements.txt
 ```
+3. when adding new packages use ```pip freeze > requirements.txt``` to update the requirements.txt
 
 ### Merge Conflicts
 good luck lol
