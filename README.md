@@ -1,5 +1,5 @@
 # 2025SpringSoftDevProject
-Project Members: Carter Plenge,
+Project Members: Carter Plenge, Jake, Landon
 
 ## We will be making a web page and app for a restaurant. 
 
@@ -15,7 +15,7 @@ Project Members: Carter Plenge,
 - Users should be able to reserve their preference for the table. (booth/table/bar/etc)
 - The website should have an interactive display of all reservations and locations to inform employees of available tables and reservations easily
 
-## Project Aciterectuer. 
+## Project Architecture. 
 ### Webpage
 - can be split into front-end and back-end if needed but given the scale of the  project we can keep them bundled in the same repo.
 - **Tools/Software we will use: Render**
@@ -24,4 +24,43 @@ Project Members: Carter Plenge,
 - needed for user accounts
 - **Tools/Software we will use: MongoDB**
 
-  Note: None of this has not been confirmed and reviewed by the group as a whole.
+## Getting started.
+1. Open a terminal to where you would like to save the project
+2. input the following commands
+```
+### Cloning the repo
+git clone https://github.com/CarterPlenge/2025SpringSoftDevProject.git
+
+# Set up a virtual environment named env
+python -m venv env
+
+# Install packages (we don't have any packages right now)
+pip install -r requirements.txt
+```
+
+## Merge Conflicts
+good luck lol
+
+## Branches
+- Given the scale of the project we can get away without using branches but if you guys want the practice then here's how we do it. 
+- We can use branches to develop features then merge the branch to main once the feature is completed. 
+- This allows us to reduce merge conflicts and avoid convoluting the main branch's comment history.
+### Creating a new branch.
+  ```
+  git checkout -b <branch-name>
+  ```
+### Changing a branch.
+  ```
+  git checkout <branch-name>
+  ```
+### Creating a pull request.
+1. Ensure you pushed and tested all changes
+2. Go to the GitHub repo page and click "Pull request"
+3. Select your branch as the source and the main branch as the destination
+4. Fill out the info and submit the pull request.
+5. Since we don't have any live features or customers you can just accept the pull request yourself without peer review. If you break anything o well there is no collateral to be had. 
+
+## Notes: 
+- None of this has been confirmed and reviewed by the group as a whole.
+- If there is anything incorrect in this read me then fix it. 
+- May we all be blessed with many naps and colorful crayons.
