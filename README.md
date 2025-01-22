@@ -7,22 +7,31 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 - Users must be able to access/see the menu from the website.
 - Users should be able to make reservations from the website.
 - Employees should be able to see reservations and plan accordingly.
-- Users shouldn't be able to access information meant for employees. 
+- Employees should be able to see their hours/shifts
+- supervisors should be able to make menu adjustments
+- Supervisors should be able to update inventory 
 
-### Sub-objectives (what's the professional terminology for this again?)
+### Sub-objectives
 - Users should be allowed to make accounts to make future reservations easier. 
 - The website should be responsive to the maximum capacity of restaurants to prevent overbooking reservations. 
 - Users should be able to reserve their preference for the table. (booth/table/bar/etc)
 - The website should have an interactive display of all reservations and locations to inform employees of available tables and reservations easily
+- Responsive menu, adjust calories ect. if they order a burger without cheese.
+- app
+
 
 ## Project Architecture. 
-### Webpage
-- can be split into front-end and back-end if needed but given the scale of the  project we can keep them bundled in the same repo.
-- **Tools/Software we will use: Render**
+### Web App
+- We will be using what we learned in WebApps. (pug and js) to build the Web App
+- **Tools/Software we will use: Pug, JS, host on Render**
 
 ### Database
-- needed for user accounts
+- needed for accounts (User, Employee, Supervisor)
+- menu items
 - **Tools/Software we will use: MongoDB**
+### App
+- Only if we have time
+- I got no expereince here so someone else can write something or we can figure it out when we get there
 
 ## Getting started.
 1. Open a terminal to where you would like to save the project
