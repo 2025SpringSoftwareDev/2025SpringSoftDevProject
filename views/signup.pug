@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Signup
+  body
+    h1 Create an Account
+    form(action="/user/signup" method="POST")
+      div
+        label(for="username") Username:
+        input(type="text" name="username" id="username" required)
+      div
+        label(for="email") Email:
+        input(type="email" name="email" id="email" required)
+      div
+        label(for="password") Password:
+        input(type="password" name="password" id="password" required)
+      div
+        label(for="role") Role:
+        select(name="role" id="role")
+          option(value="customer") Customer
+          option(value="employee") Employee
+      div
+        button(type="submit") Signup
