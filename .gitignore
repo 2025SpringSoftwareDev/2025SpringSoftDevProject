@@ -27,3 +27,6 @@ build/
 # Ignore temp files
 *.tmp
 *.temp
+
+# Ignore secret files
+.env
