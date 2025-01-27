@@ -1,0 +1,51 @@
+body {
+  background-color: blanchedalmond;
+}
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+}
+.banner .logo {
+  font-size: 45px;
+  font-weight:bold;
+  font-family:script;
+  font-style: italic;
+  text-shadow: #da8637 1px 2px 2px;
+  color:#b87333
+}
+
+.banner .nav {
+  display: flex;
+  gap: 20px;
+}
+.banner .nav a {
+  font-size: 25px;
+  color: #225e16;
+  text-decoration: none;
+  padding: 2px 5px;
+}
+.banner .nav a:hover {
+  color: #b87333;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .banner .nav {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  header .logo {
+    position: absolute;
+  }
+}
