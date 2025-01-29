@@ -1,8 +1,10 @@
-const mongoose = require("mongoose")
-const menuSchema = mongoose.Schema({
+const mongoose = require("mongoose");
+
+const menuItemSchema = mongoose.Schema({
     name: { type: String, required: true, unique: true },
-    description: { type: String, required: true, unique: true },
-    price: { type: float, required: true, unique: true },
-    calories: { type: int, required: true, unique: true }
-})
-module.exports = mongoose.model("menu", menuSchema)
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
+    calories: { type: Number, required: true }
+});
+
+module.exports = mongoose.model("Menu", menuItemSchema);

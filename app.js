@@ -1,15 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+
 const indexRouter = require('./routes/index');
 const userRoutes = require('./routes/user');
+const apiRoutes = require("./routes/api");
+
 
 const app = express();
 const PORT = 3000;
 
-// idk what this does
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api", apiRoutes);
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/restaurant', {
