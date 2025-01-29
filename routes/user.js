@@ -1,37 +1,38 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const User = require('../models/user');
-
+const express = require("express");
 const router = express.Router();
+const User = require("../models/user"); // Import User model
+const Employee = require("../models/employee"); // Import Employee model
 
-router.get('/signup', (req, res) => {
-  res.render('signup');
-});
+router.post("/signup", async (req, res) => {
+    try {
+        console.log("Received request body:", req.body); // Debugging
 
-router.post('/signup', async (req, res) => {
-  const { username, email, password, role } = req.body;
+        const { name, email, password, role } = req.body;
 
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).send('Email is already registered!');
+        // Check if all fields are provided
+        if (!name || !email || !password || !role) {
+            return res.status(400).send("All fields are required");
+        }
+
+        if (role === "customer") {
+            // Create a new User
+            const newUser = new User({ name, email, password });
+            await newUser.save();
+            console.log("Customer registered:", newUser);
+        } else if (role === "employee") {
+            // Create a new Employee
+            const newEmployee = new Employee({ name, email, password, admin: false }); // Default admin to false
+            await newEmployee.save();
+            console.log("Employee registered:", newEmployee);
+        } else {
+            return res.status(400).send("Invalid role");
+        }
+
+        res.redirect("/"); // Redirect after successful signup
+    } catch (err) {
+        console.error("Signup error:", err);
+        res.status(500).send("Error registering user");
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-      role: role || 'customer',
-    });
-
-    await newUser.save();
-    res.redirect('/login');
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('An error occurred while creating the account.');
-  }
 });
 
 module.exports = router;
