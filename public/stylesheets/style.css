@@ -91,10 +91,40 @@ h1{
 }
 
 .card img {
+  display: block;
   width: 100%;
+  height: 170px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
+
+.image:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
 
 .card .food-name {
   font-size: 25px;
@@ -103,5 +133,32 @@ h1{
   font-style: italic;
   color: #b87333;
   text-align: left;
+  margin-top: -30px;
 }
+
+.card button{
+  padding: 8px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: -63px;
+  background-color:#b87333;
+  border-radius: 10px;
+  border: 0px;
+  float: right;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
+}
+.card button:hover{
+  background-color:#965e2a;
+}
+
+.card button:active {
+  transform: scale(0.98);
+  /* Scaling button to 0.98 to its original size */
+  box-shadow: 3px 2px 10px 1px rgba(0, 0, 0, 0.24);
+  /* Lowering the shadow */
+}
+
+
 
