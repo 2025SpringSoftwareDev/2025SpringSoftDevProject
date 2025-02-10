@@ -62,9 +62,7 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 - needed for accounts (User, Employee, Supervisor)
 - menu items
 - **Tools/Software we will use: MongoDB**
-### App
-- Only if we have time
-- I got no experience here so someone else can write something or we can figure it out when we get there
+  
 ### Project Organization
 Please refer to the following to keep our project organized
 
