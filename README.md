@@ -55,6 +55,42 @@ ________________________________________
 ### App
 - Only if we have time
 - I got no expereince here so someone else can write something or we can figure it out when we get there
+### Project organization
+Please refer to the following to keep our project organized
+
+```
+Project Root
+├── assignment documents # a folder for submission files.
+├── bin  # dont touch
+│   ├── www  # dont touch
+├── controllers  # for future backend logic
+├── models  # Database schemas 
+│   ├── employees.js  
+│   ├── menuItems.js  
+│   ├── user.js  
+├── node_modules  # Dependencies, auto-managed by npm. dont touch dont commit
+├── public  # (Static assets)  
+│   ├── HTML  # Static HTML pages (pages that dont change)
+│   │   ├── aboutus.html  
+│   ├── images  # All images for the project
+│   ├── stylesheets  # CSS files 
+│   │   ├── style.css  # main stylesheet
+│   │   ├── navigationBar.css # if needed we can break it into componets as such
+├── routes  # API and page routing
+│   ├── api.js  
+│   ├── index.js  
+│   ├── user.js  
+├── views  # Dynamic pages (pug or html) 
+│   ├── login.pug
+│   ├── signup.pug
+│   ├── homepage.html
+├── app.js  # Main Express server file
+├── .env # stores secrets that we dont want shared. 
+├── .gitignore # use to prevent files from being commited/tracked by git
+├── package-lock.json # npm stuff, shouldnt need to touch
+├── package.json # npm stuff, shouldnt need to touch
+├── README.md # use to communicate info regarding running/working on the project
+```
 
 ## Getting started.
 1. Open a terminal to where you would like to save the project
@@ -65,20 +101,9 @@ git clone https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject.git
 
 # Navigate to the project folder
 cd 2025SpringSoftDevProject
-
-# Set up a virtual environment named env
-python -m venv env
-
-# Activate the venv (windows only)
-.\env\Scripts\activate
-
-# Install packages (we don't have any packages right now)
-pip install -r requirements.txt
 ```
-3. when adding new packages use ```pip freeze > requirements.txt``` to update the requirements.txt
-4. wait all the env stuff is irrelevant because we probably won't be using Python. Just js and pug.
-5. install node ig.
-6. unless we wanna do something different.
+5. install [node.js](https://nodejs.org/en/download).
+6. use npm start, 
    
 ### Merge Conflicts
 good luck lol
