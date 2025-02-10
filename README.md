@@ -1,7 +1,7 @@
 # 2025SpringSoftDevProject
 Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
-### User Stories grouped by key features:
+## User Stories grouped by key features:
 ---
 
 #### Customer-Facing Features
@@ -53,7 +53,7 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
 
 
-## Project Architecture. 
+# Project Architecture. 
 ### Web App
 - We will be using what we learned in WebApps. (pug and js) to build the Web App
 - **Tools/Software we will use: Pug, JS, host on Render**
@@ -101,7 +101,7 @@ Project Root
 ```
 Most things that shouldnt be tracked by git are already included in the ```.gitignore``` and you shouldn't need to worry about them. 
 
-## Getting started.
+# Getting started.
 1. Open a terminal to where you would like to save the project
 2. input the following commands
 ```
