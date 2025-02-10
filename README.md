@@ -112,7 +112,9 @@ git clone https://github.com/2025SpringSoftwareDev/2025SpringSoftDevProject.git
 cd 2025SpringSoftDevProject
 ```
 3. install [node.js](https://nodejs.org/en/download).
-4. use npm start, 
+4. use command ```npm start``` to host the webapp locally
+5. use a browser access the web app at ```http://localhost:3000/```
+6. use ```ctrl + c``` to kill the process in the termanal
    
 ### Merge Conflicts
 good luck lol
