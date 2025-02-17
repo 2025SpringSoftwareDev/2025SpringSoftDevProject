@@ -7,6 +7,8 @@ const path = require('path');
 const indexRouter = require('./routes/index');
 const userRoutes = require('./routes/user');
 const apiRoutes = require("./routes/api");
+const Menu = require('./models/menuItem'); 
+
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +32,17 @@ mongoose.connect(mongoURI, {
 // Set the view engine to Pug
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+
+// idk how this works
+app.get("/menu", async (req, res) => {
+    try {
+        const menuItems = await Menu.find();
+        res.render("menu", { menuItems });
+    } catch (err) {
+        res.status(500).send("Error fetching menu items.");
+    }
+});
 
 // Use the router
 app.use('/', indexRouter);
