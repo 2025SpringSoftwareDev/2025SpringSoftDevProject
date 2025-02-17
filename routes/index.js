@@ -4,7 +4,7 @@ const path = require('path');
 
 // This is how we connect to a pug view
 // router.get('/', (req, res) => {
-//     res.render('index'); //from index
+//     res.render('index');
 // });
 
 // This is how we connect to  a html page
@@ -29,8 +29,8 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/menu', (req, res) => {
-    res.render('menu');
-})
+  res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
+});
 
 router.get('/reservation', (req, res) => {
     res.render('reservation');

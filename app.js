@@ -34,15 +34,15 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 
-// idk how this works
-app.get("/menu", async (req, res) => {
-    try {
-        const menuItems = await Menu.find();
-        res.render("menu", { menuItems });
-    } catch (err) {
-        res.status(500).send("Error fetching menu items.");
-    }
-});
+// populates the menu.pug with entries from the database. 
+// app.get("/menu", async (req, res) => {
+//     try {
+//         const menuItems = await Menu.find();
+//         res.render("menu", { menuItems });
+//     } catch (err) {
+//         res.status(500).send("Error fetching menu items.");
+//     }
+// });
 
 // Use the router
 app.use('/', indexRouter);
