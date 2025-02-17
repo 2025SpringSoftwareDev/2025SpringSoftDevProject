@@ -1,51 +1,367 @@
+/* Global Variables */
+:root {
+  --OverpassMonoFont: 'Overpass Mono', monospace;
+  --PTSansFont: 'PT Sans', sans-serif;
+  --AlexBrushFont: 'Alex Brush', cursive;
+  --lightbrown: rgb(190, 128, 64);
+  --white: rgb(255,255,255);
+  --black: rgb(0,0,0);
+  --darkgray: rgb(20,20,20);
+  --lightgray: rgb(35,35,35);
+  --blanchedalmond: #ffebcd; /* Blanched Almond */
+  --theme-color-1: #da8637; /* Theme Color 1 */
+  --theme-color-2: #b87333; /* Theme Color 2 */
+}
+
+/* General Styling */
 body {
-  background-color: blanchedalmond;
-}
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px 30px;
-}
-.banner .logo {
-  font-size: 45px;
-  font-weight:bold;
-  font-family:script;
-  font-style: italic;
-  text-shadow: #da8637 1px 2px 2px;
-  color:#b87333
+  overflow-x: hidden;
+  background-color: var(--blanchedalmond); /* Set background color */
 }
 
-.banner .nav {
-  display: flex;
-  gap: 20px;
+h2 {
+  margin-top: 0;
+  color: var(--theme-color-1); /* Changed to theme-color-1 */
 }
-.banner .nav a {
-  font-size: 25px;
-  color: #225e16;
+
+button {
+  border: 0;
+  background: 0;
+  cursor: pointer;
+}
+
+a {
   text-decoration: none;
-  padding: 2px 5px;
-}
-.banner .nav a:hover {
-  color: #b87333;
-  text-decoration: underline;
+  padding-bottom: 5px;
+  color: var(--theme-color-1); /* Link color */
 }
 
-@media (max-width: 768px) {
-  .banner {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header Styling */
+header {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(var(--black), .8), transparent),
+    url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  padding: 15px 35px;
+  display: flex;
+  position: relative;
+}
+
+h2 {
+  margin-bottom: 0;
+  flex: 1;
+  letter-spacing: 3px;
+  font-family: var(--OverpassMonoFont) !important;
+  color: var(--theme-color-1); /* Changed to theme-color-1 */
+}
+
+#logo {
+  color: var(--theme-color-1); /* Changed to theme-color-1 */
+  text-transform: uppercase;
+  border-bottom: solid 2px var(--theme-color-1); /* Border color changed */
+}
+
+.nav-button {
+  color: var(--theme-color-1); /* Changed navigation button text color */
+  font-size: 23px;
+}
+
+div {
+  background: rgba(0, 0, 0, .9);
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  text-align: center;
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+ul {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exit-menu {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: var(--theme-color-1); /* Exit menu color changed to theme-color-1 */
+  font-size: 20px;
+  padding: 10px;
+}
+
+li {
+  font-family: var(--PTSansFont) !important;
+  text-transform: uppercase;
+}
+
+li a {
+  display: block;
+  color: var(--theme-color-1); /* Changed link color to theme-color-1 */
+  padding: 15px 5px;
+  transition: all .4s;
+}
+
+li a:hover, .active:hover {
+  color: var(--theme-color-2);
+  border-bottom-color: var(--theme-color-2);
+}
+
+.center {
+  line-height: 0;
+  margin: auto;
+  text-align: center;
+  color: var(--theme-color-1); /* Changed text color to theme-color-1 */
+}
+
+.center h1 {
+  font-family: var(--AlexBrushFont) !important;
+  color: var(--theme-color-2);
+  font-size: 80px;
+  margin-bottom: 34px;
+}
+
+.center h2 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 28px;
+}
+
+#asterisk {
+  color: var(--theme-color-1);
+  line-height: 0.5;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+#asterisk:before, #asterisk:after {
+  content: "";
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  height: 1px;
+  width: 0%;
+  opacity: 0;
+  background: var(--theme-color-1); /* Changed to theme-color-1 */
+}
+
+#asterisk:before {
+  margin-right: 10px;
+}
+
+#asterisk:after {
+  margin-left: 10px;
+}
+
+p {
+  text-transform: uppercase;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: var(--theme-color-2);
+}
+
+/* Menu Section Styling */
+.menu {
+  padding: 30px;
+}
+
+.menu-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+img {
+  width: 100%;
+  height: 200px;
+  background-color: #ccc;
+  object-fit: cover;
+}
+
+/* Center Text Styling */
+.center-text {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  color: rgb(77, 77, 77);
+}
+
+.center-text h2 {
+  margin-top: 25px;
+  line-height: 0;
+}
+
+.center-text p {
+  margin-top: 0;
+  font-family: var(--PTSansFont);
+  line-height: 1.5;
+}
+
+.center-text a {
+  font-family: var(--PTSansFont);
+  color: var(--theme-color-1);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: solid 2px var(--theme-color-1);
+}
+
+/* Footer Styling */
+footer {
+  margin: 0;
+  position: relative;
+  background: var(--darkgray);
+  color: lightgray;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  line-height: 1.2;
+  border-radius: 50%;
+  margin-top: 0;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+h5 {
+  line-height: 1.5;
+}
+
+.restaurant-info {
+  padding: 35px 40px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copyright {
+  background: var(--lightgray);
+  color: rgb(150, 150, 150);
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.copyright span {
+  border-bottom: solid 1px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 425px) {
+  header, .bread-background, .cake-background {
+    background-attachment: scroll;
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    .restaurant-info {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  nav {
+    position: initial !important;
+    align-items: baseline;
+    padding: 20px 70px !important;
   }
 
-  .banner .nav {
-    margin-top: 10px;
-    flex-wrap: wrap;
-    gap: 10px;
+  .nav-button {
+    display: none;
   }
 
-  header .logo {
-    position: absolute;
+  div {
+    position: initial !important;
+    background: none !important;
+    opacity: initial !important;
+    transform: initial !important;
+  }
+
+  ul {
+    position: initial !important;
+    flex-direction: row !important;
+  }
+
+  .exit-menu {
+    display: none;
+  }
+
+  li a {
+    font-size: 12.8px;
+    margin: 0 10px;
+    letter-spacing: 1px;
+    padding: 5px 0 !important;
+  }
+
+  .active {
+    border-bottom: solid 1px lightgray;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
