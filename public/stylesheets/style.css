@@ -4,36 +4,46 @@
   --PTSansFont: 'PT Sans', sans-serif;
   --AlexBrushFont: 'Alex Brush', cursive;
   --lightbrown: rgb(190, 128, 64);
-  --white: rgb(255,255,255);
-  --black: rgb(0,0,0);
-  --darkgray: rgb(20,20,20);
-  --lightgray: rgb(35,35,35);
-  --blanchedalmond: #ffebcd; /* Blanched Almond */
-  --theme-color-1: #da8637; /* Theme Color 1 */
-  --theme-color-2: #b87333; /* Theme Color 2 */
+  --white: rgb(255, 255, 255);
+  --black: rgb(0, 0, 0);
+  --darkgray: rgb(20, 20, 20);
+  --lightgray: rgb(35, 35, 35);
+  --blanchedalmond: #ffebcd;
+  --theme-color-1: #da8637;
+  --theme-color-2: #b87333;
 }
 
 /* General Styling */
 body {
   overflow-x: hidden;
-  background-color: var(--blanchedalmond); /* Set background color */
+  background-color: var(--blanchedalmond);
+  font-family: var(--PTSansFont);
+  color: var(--black);
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
   margin-top: 0;
-  color: var(--theme-color-1); /* Changed to theme-color-1 */
+  color: var(--theme-color-1);
+  font-family: var(--OverpassMonoFont);
 }
 
 button {
-  border: 0;
-  background: 0;
+  border: none;
+  background: none;
   cursor: pointer;
 }
 
 a {
   text-decoration: none;
   padding-bottom: 5px;
-  color: var(--theme-color-1); /* Link color */
+  color: var(--theme-color-1);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--theme-color-2);
 }
 
 ul {
@@ -45,41 +55,40 @@ ul {
 /* Header Styling */
 header {
   min-height: 100vh;
-  background: linear-gradient(to bottom, rgba(var(--black), .8), transparent),
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
     url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Navigation */
 nav {
   padding: 15px 35px;
   display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
   position: relative;
 }
 
-h2 {
-  margin-bottom: 0;
-  flex: 1;
-  letter-spacing: 3px;
-  font-family: var(--OverpassMonoFont) !important;
-  color: var(--theme-color-1); /* Changed to theme-color-1 */
-}
-
 #logo {
-  color: var(--theme-color-1); /* Changed to theme-color-1 */
+  color: var(--theme-color-1);
   text-transform: uppercase;
-  border-bottom: solid 2px var(--theme-color-1); /* Border color changed */
+  border-bottom: 2px solid var(--theme-color-1);
+  font-size: 22px;
 }
 
 .nav-button {
-  color: var(--theme-color-1); /* Changed navigation button text color */
+  color: var(--theme-color-1);
   font-size: 23px;
 }
 
-div {
-  background: rgba(0, 0, 0, .9);
+.nav-menu {
+  background: rgba(0, 0, 0, 0.9);
   position: fixed;
   right: 0;
   left: 0;
@@ -89,11 +98,10 @@ div {
   text-align: center;
   transform: scale(0);
   opacity: 0;
-  transition: opacity .2s;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-ul {
-  position: relative;
+.nav-menu ul {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -104,37 +112,36 @@ ul {
   position: absolute;
   top: 15px;
   right: 15px;
-  color: var(--theme-color-1); /* Exit menu color changed to theme-color-1 */
+  color: var(--theme-color-1);
   font-size: 20px;
   padding: 10px;
 }
 
 li {
-  font-family: var(--PTSansFont) !important;
+  font-family: var(--PTSansFont);
   text-transform: uppercase;
 }
 
 li a {
   display: block;
-  color: var(--theme-color-1); /* Changed link color to theme-color-1 */
+  color: var(--theme-color-1);
   padding: 15px 5px;
-  transition: all .4s;
+  transition: all 0.4s ease;
 }
 
 li a:hover, .active:hover {
   color: var(--theme-color-2);
-  border-bottom-color: var(--theme-color-2);
+  border-bottom: 2px solid var(--theme-color-2);
 }
 
+/* Centered Content */
 .center {
-  line-height: 0;
-  margin: auto;
   text-align: center;
-  color: var(--theme-color-1); /* Changed text color to theme-color-1 */
+  color: var(--theme-color-1);
 }
 
 .center h1 {
-  font-family: var(--AlexBrushFont) !important;
+  font-family: var(--AlexBrushFont);
   color: var(--theme-color-2);
   font-size: 80px;
   margin-bottom: 34px;
@@ -146,43 +153,34 @@ li a:hover, .active:hover {
   font-size: 28px;
 }
 
+/* Asterisk Separator */
 #asterisk {
   color: var(--theme-color-1);
-  line-height: 0.5;
   font-size: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #asterisk:before, #asterisk:after {
   content: "";
   display: inline-block;
-  position: relative;
-  vertical-align: middle;
   height: 1px;
-  width: 0%;
-  opacity: 0;
-  background: var(--theme-color-1); /* Changed to theme-color-1 */
+  width: 50px;
+  background: var(--theme-color-1);
+  margin: 0 10px;
 }
 
-#asterisk:before {
-  margin-right: 10px;
-}
-
-#asterisk:after {
-  margin-left: 10px;
-}
-
+/* Paragraph Styling */
 p {
   text-transform: uppercase;
-  margin-top: 5px;
   font-size: 14px;
   font-weight: bold;
   letter-spacing: 3px;
   color: var(--theme-color-2);
 }
 
-/* Menu Section Styling */
+/* Menu Section */
 .menu {
   padding: 30px;
 }
@@ -193,24 +191,22 @@ p {
   grid-gap: 10px;
 }
 
-img {
+.menu-images img {
   width: 100%;
   height: 200px;
   background-color: #ccc;
   object-fit: cover;
 }
 
-/* Center Text Styling */
+/* Centered Text */
 .center-text {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 30px;
+  margin: 30px 0 40px;
   color: rgb(77, 77, 77);
 }
 
 .center-text h2 {
   margin-top: 25px;
-  line-height: 0;
 }
 
 .center-text p {
@@ -226,47 +222,36 @@ img {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
-  border-bottom: solid 2px var(--theme-color-1);
+  border-bottom: 2px solid var(--theme-color-1);
 }
 
-/* Footer Styling */
+/* Footer */
 footer {
-  margin: 0;
-  position: relative;
   background: var(--darkgray);
   color: lightgray;
+  text-align: center;
+  padding: 20px 0;
 }
 
-button {
+.footer-button {
   width: 50px;
   height: 50px;
   position: absolute;
   top: -20px;
   left: 50%;
-  transform: translate(-50%, -10%);
+  transform: translateX(-50%);
   background: white;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.2px;
-  line-height: 1.2;
   border-radius: 50%;
-  margin-top: 0;
-}
-
-h4 {
-  margin-bottom: 0;
-}
-
-h5 {
-  line-height: 1.5;
 }
 
 .restaurant-info {
-  padding: 35px 40px !important;
+  padding: 35px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -278,54 +263,42 @@ h5 {
   font-size: 14px;
   letter-spacing: 1px;
   padding: 10px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.copyright span {
-  border-bottom: solid 1px;
 }
 
 /* Media Queries */
 @media screen and (max-width: 425px) {
-  header, .bread-background, .cake-background {
+  header {
     background-attachment: scroll;
   }
 }
 
 @media (min-width: 768px) {
-  footer {
-    .restaurant-info {
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: flex-start;
-    }
+  .restaurant-info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
   }
 }
 
 @media (min-width: 769px) {
   nav {
-    position: initial !important;
     align-items: baseline;
-    padding: 20px 70px !important;
+    padding: 20px 70px;
   }
 
   .nav-button {
     display: none;
   }
 
-  div {
-    position: initial !important;
-    background: none !important;
-    opacity: initial !important;
-    transform: initial !important;
+  .nav-menu {
+    position: static;
+    background: none;
+    opacity: 1;
+    transform: none;
   }
 
   ul {
-    position: initial !important;
-    flex-direction: row !important;
+    flex-direction: row;
   }
 
   .exit-menu {
@@ -335,33 +308,10 @@ h5 {
   li a {
     font-size: 12.8px;
     margin: 0 10px;
-    letter-spacing: 1px;
-    padding: 5px 0 !important;
+    padding: 5px 0;
   }
 
   .active {
-    border-bottom: solid 1px lightgray;
-  }
-}
-
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade {
-  0% {
-    transform: scale(2);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
+    border-bottom: 1px solid lightgray;
   }
 }
