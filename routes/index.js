@@ -8,9 +8,9 @@ const path = require('path');
 // });
 
 // This is how we connect to  a html page
- router.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, '../public/HTML/homepage.html'));
- });
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/homepage.html'));
+});
 
 router.get('/customer', (req, res) => {
     res.render('customerDashboard');
@@ -33,8 +33,8 @@ router.get('/menu', (req, res) => {
 });
 
 router.get('/reservation', (req, res) => {
-    res.render('reservation');
-})
+    res.sendFile(path.join(__dirname, '../public/HTML/reservation.html'));
+});
 
 router.get('/catering', (req, res) => {
     res.render('catering');
