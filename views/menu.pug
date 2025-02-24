@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title Menu
+    body
+        h1 Menu Items
+        ul
+            each item in menuItems
+                li
+                    h2 #{item.name}
+                    p Description: #{item.description}
+                    p Price: $#{item.price}
+                    p Calories: #{item.calories} kcal

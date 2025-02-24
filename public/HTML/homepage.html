@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Copper Fork - A Fine Dining Experience">
+  <meta name="keywords" content="Copper Fork, Restaurant, Fine Dining, Food, Menu">
+  <meta name="author" content="Landon Swvaey">
+  
+  <title>The Copper Fork</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="public/stylesheets/style.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h2><a href="#" id="logo">The Copper Fork</a></h2>
+      <button class="nav-button fa fa-bars"></button>
+      <div>
+        <ul>
+          <button class="exit-menu fa fa-times"></button>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reservations</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="menu add-flex add-padding">
+    <div class="menu-images">
+      <img src="public/images/dish1.jpg" data-aos="fade-down" alt="Dish 1"/>
+      <img src="public/images/dish2.jpg" data-aos="fade-left" alt="Dish 2"/>
+      <img src="public/images/dish3.jpg" data-aos="fade-right" alt="Dish 3"/>
+      <img src="public/images/dish4.jpg" data-aos="fade-up" alt="Dish 4"/>
+    </div>
+    <div class="center-text">
+      <h1><span class="custom-font alex-brush">Discover</span><br />MENU</h1>
+      <h2>*</h2>
+      <p>Experience a world-class culinary journey at The Copper Fork.</p>
+      <a href="menu.html">View the Full Menu</a>
+    </div>
+  </section>
+
+  <footer>
+    <button class="to-top"><i class="fa fa-chevron-up"></i> TOP</button>
+    <div class="restaurant-info">
+      <div class="locations">
+        <h4>LOCATION</h4>
+        <h5>123 W 3rd St. Maryville, MO 64429</h5>
+      </div>
+      <div class="hours">
+        <h4>HOURS</h4>
+        <h5>Monday - Thursday: 12:00pm - 10:00pm</h5>
+        <h5>Friday & Saturday: 11:00am - 11:00pm</h5>
+      </div>
+    </div>
+    <div class="copyright">
+      <p><small>Copyright © 2025 The Copper Fork</small></p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS (Animate on Scroll)
+    AOS.init();
+
+    // Mobile navigation functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const navButton = document.querySelector(".nav-button");
+      const exitButton = document.querySelector(".exit-menu");
+      const menu = document.querySelector("nav div");
+
+      navButton.addEventListener("click", () => {
+        menu.classList.add("show-menu");
+      });
+
+      exitButton.addEventListener("click", () => {
+        menu.classList.remove("show-menu");
+      });
+    });
+  </script>
+</body>
+</html>
