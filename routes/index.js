@@ -8,7 +8,7 @@ const path = require('path');
 //});
 
 // This is how we connect to  a html page
- router.get('/', (req, res) => {
+ router.get('/menu', (req, res) => {
    res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
  });
 
