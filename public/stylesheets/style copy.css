@@ -1,60 +1,18 @@
 /* Global Variables */
 :root {
-  --OverpassMonoFont: 'Overpass Mono', monospace;
-  --PTSansFont: 'PT Sans', sans-serif;
-  --AlexBrushFont: 'Alex Brush', cursive;
-  --lightbrown: rgb(190, 128, 64);
-  --white: rgb(255, 255, 255);
-  --black: rgb(0, 0, 0);
-  --darkgray: rgb(20, 20, 20);
-  --lightgray: rgb(35, 35, 35);
-  --blanchedalmond: #ffebcd;
-  --theme-color-1: #da8637;
-  --theme-color-2: #b87333;
+  --font-sans: 'PT Sans', sans-serif;
+  --font-mono: 'Overpass Mono', monospace;
+  --theme-primary: #da8637;
+  --theme-secondary: #b87333;
+  --background-color: #ffebcd;
+  --text-color: #000;
 }
 
-/* General Styling */
-body {
-  overflow-x: hidden;
-  background-color: var(--blanchedalmond);
-  font-family: var(--PTSansFont);
-  color: var(--black);
-  margin: 0;
-  padding: 0;
-}
-
-h2 {
-  margin-top: 0;
-  color: var(--theme-color-1);
-  font-family: var(--OverpassMonoFont);
-}
-
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  padding-bottom: 5px;
-  color: var(--theme-color-1);
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--theme-color-2);
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Header Styling */
 header {
-  min-height: 25vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
     url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
   background-size: cover;
@@ -66,19 +24,14 @@ header {
   padding-bottom: 100px;
 }
 
-/* Navigation */
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensures it stays above other elements */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 15px 35px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
 }
-
 
 #logo {
   color: var(--theme-color-1);
@@ -113,251 +66,64 @@ nav {
   justify-content: center;
 }
 
-.exit-menu {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  color: var(--theme-color-1);
-  font-size: 20px;
-  padding: 10px;
-}
-
-li {
-  font-family: var(--PTSansFont);
-  text-transform: uppercase;
-}
-
-li a {
-  display: block;
-  color: var(--theme-color-1);
-  padding: 15px 5px;
-  transition: all 0.4s ease;
-}
-
-li a:hover, .active:hover {
-  color: var(--theme-color-2);
-  border-bottom: 2px solid var(--theme-color-2);
-}
-
-/* Centered Content */
-.center {
-  text-align: center;
-  color: var(--theme-color-1);
-}
-
-.center h1 {
-  font-family: var(--AlexBrushFont);
-  color: var(--theme-color-2);
-  font-size: 80px;
-  margin-bottom: 34px;
-}
-
-.center h2 {
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 28px;
-}
-
-/* Asterisk Separator */
-#asterisk {
-  color: var(--theme-color-1);
-  font-size: 30px;
+/* General Styling */
+body {
+  background-color: var(--background-color);
+  font-family: var(--font-sans);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-#asterisk:before, #asterisk:after {
-  content: "";
-  display: inline-block;
-  height: 1px;
-  width: 50px;
-  background: var(--theme-color-1);
-  margin: 0 10px;
-}
-
-/* Paragraph Styling */
-p {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: var(--theme-color-2);
-}
-
-/* Menu Section */
-.menu {
-  padding: 30px;
-}
-
-.menu-images {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-}
-
-.menu-images img {
+/* Form Container */
+.container {
+  max-width: 400px;
   width: 100%;
-  height: 200px;
-  background-color: #ccc;
-  object-fit: cover;
-}
-
-/* Centered Text */
-.center-text {
-  position: relative;
-  text-align: center;
-  margin: 30px auto; /* Add auto margins to prevent overlap */
-  max-width: 80%;
-}
-
-.center-text h2 {
-  margin-top: 25px;
-}
-
-.center-text p {
-  margin-top: 0;
-  font-family: var(--PTSansFont);
-  line-height: 1.5;
-}
-
-.center-text a {
-  font-family: var(--PTSansFont);
-  color: var(--theme-color-1);
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  border-bottom: 2px solid var(--theme-color-1);
-}
-
-/* Footer */
-footer {
-  position: relative; /* Make it flow naturally */
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.footer-button {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
   background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1.2px;
-  border-radius: 50%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-.restaurant-info {
-  padding: 35px 40px;
+h1 {
+  color: var(--theme-primary);
+  font-family: var(--font-mono);
+}
+
+/* Form Styling */
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 10px;
 }
 
-.copyright {
-  background: var(--lightgray);
-  color: rgb(150, 150, 150);
-  font-size: 14px;
-  letter-spacing: 1px;
-  padding: 10px 30px;
+label {
+  font-weight: bold;
+  text-align: left;
+  display: block;
 }
 
-/* Media Queries */
-@media screen and (max-width: 425px) {
-  header {
-    background-attachment: scroll;
-  }
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-@media (min-width: 768px) {
-  .restaurant-info {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
+button {
+  background-color: var(--theme-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-@media (min-width: 769px) {
-  nav {
-    align-items: baseline;
-    padding: 20px 70px;
-  }
-
-  .nav-button {
-    display: none;
-  }
-
-  .nav-menu {
-    position: static;
-    background: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  ul {
-    flex-direction: row;
-  }
-
-  .exit-menu {
-    display: none;
-  }
-
-  li a {
-    font-size: 12.8px;
-    margin: 0 10px;
-    padding: 5px 0;
-  }
-
-  .active {
-    border-bottom: 1px solid lightgray;
-  }
-  p {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-  }
-  .card .food-name {
-    font-size: 25px;
-    font-weight: bold;
-    font-family: script;
-    font-style: italic;
-    color: #b87333;
-    text-align: left;
-    margin-top: -30px;
-  }
-  .card button{
-    padding: 8px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    margin-top: -63px;
-    background-color:#b87333;
-    border-radius: 10px;
-    border: 0px;
-    float: right;
-    cursor: pointer;
-    outline: none;
-    transition: 0.2s all;
-  }
-  .card button:hover{
-    background-color:#965e2a;
-  }
-  .card button:active {
-    transform: scale(0.98);
-    /* Scaling button to 0.98 to its original size */
-    box-shadow: 3px 2px 10px 1px rgba(0, 0, 0, 0.24);
-    /* Lowering the shadow */
-  }
+button:hover {
+  background-color: var(--theme-secondary);
+}
