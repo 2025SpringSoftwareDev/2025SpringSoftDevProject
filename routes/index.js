@@ -20,13 +20,22 @@ router.get('/employee', (req, res) => {
     res.render('employeeDashboard');
 });
 
+// router.get('/signup', (req, res) => {
+//     res.render('signup');
+// });
+
+// router.get('/login', (req, res) => {
+//     res.render('login');
+// });
+
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.sendFile(path.join(__dirname, '../public/HTML/signup.html'));
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.sendFile(path.join(__dirname, '../public/HTML/login.html'));
 });
+
 
 router.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
