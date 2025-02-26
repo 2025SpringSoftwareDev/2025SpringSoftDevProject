@@ -54,7 +54,7 @@ ul {
 
 /* Header Styling */
 header {
-  min-height: 100vh;
+  min-height: 30;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
     url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
   background-size: cover;
