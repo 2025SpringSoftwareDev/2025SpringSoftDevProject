@@ -1,61 +1,320 @@
-h1{
-    font-size: 45px;
-    font-weight: bold;
-    font-family: script;
-    font-style: italic;
-    text-shadow: #da8637 1px 2px 2px;
-    color: #b87333;
-    text-align: center;
+/* Global Variables */
+:root {
+  --OverpassMonoFont: 'Overpass Mono', monospace;
+  --PTSansFont: 'PT Sans', sans-serif;
+  --AlexBrushFont: 'Alex Brush', cursive;
+  --lightbrown: rgb(190, 128, 64);
+  --white: rgb(255, 255, 255);
+  --black: rgb(0, 0, 0);
+  --darkgray: rgb(20, 20, 20);
+  --lightgray: rgb(35, 35, 35);
+  --blanchedalmond: #ffebcd;
+  --theme-color-1: #da8637;
+  --theme-color-2: #b87333;
+}
+
+/* General Styling */
+body {
+  overflow-x: hidden;
+  background-color: var(--blanchedalmond);
+  font-family: var(--PTSansFont);
+  color: var(--black);
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--theme-color-1);
+  font-family: var(--OverpassMonoFont);
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  padding-bottom: 5px;
+  color: var(--theme-color-1);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--theme-color-2);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header Styling */
+header {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
+    url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
+/* Navigation */
+nav {
+  padding: 15px 35px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+#logo {
+  color: var(--theme-color-1);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--theme-color-1);
+  font-size: 22px;
+}
+
+.nav-button {
+  color: var(--theme-color-1);
+  font-size: 23px;
+}
+
+.nav-menu {
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  text-align: center;
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.nav-menu ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exit-menu {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: var(--theme-color-1);
+  font-size: 20px;
+  padding: 10px;
+}
+
+li {
+  font-family: var(--PTSansFont);
+  text-transform: uppercase;
+}
+
+li a {
+  display: block;
+  color: var(--theme-color-1);
+  padding: 15px 5px;
+  transition: all 0.4s ease;
+}
+
+li a:hover, .active:hover {
+  color: var(--theme-color-2);
+  border-bottom: 2px solid var(--theme-color-2);
+}
+
+/* Centered Content */
+.center {
+  text-align: center;
+  color: var(--theme-color-1);
+}
+
+.center h1 {
+  font-family: var(--AlexBrushFont);
+  color: var(--theme-color-2);
+  font-size: 80px;
+  margin-bottom: 34px;
+}
+
+.center h2 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 28px;
+}
+
+/* Asterisk Separator */
+#asterisk {
+  color: var(--theme-color-1);
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#asterisk:before, #asterisk:after {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  width: 50px;
+  background: var(--theme-color-1);
+  margin: 0 10px;
+}
+
+/* Paragraph Styling */
+p {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: var(--theme-color-2);
+}
+
+/* Menu Section */
+.menu {
+  padding: 30px;
+  margin-bottom: 50px;
+}
+
+.menu-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.menu-images img {
+  width: 100%;
+  height: 200px;
+  background-color: #ccc;
+  object-fit: cover;
+}
+
+/* Centered Text */
+.center-text {
+  text-align: center;
+  margin: 30px 0 40px;
+  color: rgb(77, 77, 77);
+}
+
+.center-text h2 {
+  margin-top: 25px;
+}
+
+.center-text p {
+  margin-top: 0;
+  font-family: var(--PTSansFont);
+  line-height: 1.5;
+}
+
+.center-text a {
+  font-family: var(--PTSansFont);
+  color: var(--theme-color-1);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--theme-color-1);
+}
+
+/* Footer */
+footer {
+  background: var(--darkgray);
+  color: lightgray;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.footer-button {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  border-radius: 50%;
+}
+
+.restaurant-info {
+  padding: 35px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copyright {
+  background: var(--lightgray);
+  color: rgb(150, 150, 150);
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 30px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 425px) {
+  header {
+    background-attachment: scroll;
   }
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .restaurant-info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
   }
-  #first-card{
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 300px;
-    border-radius: 25px;
-    margin-left: 100px;
+}
+
+@media (min-width: 769px) {
+  nav {
+    align-items: baseline;
+    padding: 20px 70px;
   }
-  .card {
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 300px;
-    border-radius: 25px;
-    position: relative;
+
+  .nav-button {
+    display: none;
   }
-  #last-card{
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: 300px;
-    border-radius: 25px;
-    margin-right: 100px;
-  }
-  .card img {
-    display: block;
-    width: 100%;
-    height: 170px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
-  .card:hover .overlay {
+
+  .nav-menu {
+    position: static;
+    background: none;
     opacity: 1;
+    transform: none;
   }
-  .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 170px;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color:#225e16;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+
+  ul {
+    flex-direction: row;
+  }
+
+  .exit-menu {
+    display: none;
+  }
+
+  li a {
+    font-size: 12.8px;
+    margin: 0 10px;
+    padding: 5px 0;
+  }
+
+  .active {
+    border-bottom: 1px solid lightgray;
   }
   p {
     color: white;
