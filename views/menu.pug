@@ -1,13 +1,33 @@
 doctype html
-html
-    head
-        title Menu
-    body
-        h1 Menu Items
-        ul
-            each item in menuItems
-                li
-                    h2 #{item.name}
-                    p Description: #{item.description}
-                    p Price: $#{item.price}
-                    p Calories: #{item.calories} kcal
+meta(charset='UTF-8')
+meta(name='description' content='The Copper Fork')
+meta(name='keywords' content='Copper Fork, Restaurant, Menu')
+meta(name='author' content='Jake Schellhorn')
+meta(name='viewport' content='width=device-width, initial-scale=1.0')
+head
+  title The Copper Fork
+  link(rel='stylesheet' href='/stylesheets/banner.css')
+  link(rel='stylesheet' href='/stylesheets/menu.css')
+header.banner
+  a.logo(href='/') The Copper Fork
+  nav.nav
+    a(href='/menu') MENU
+    a(href='/order') ORDER NOW
+    a(href='/reservation') RESERVATIONS
+    a(href='/catering') CATERING
+    a(href='/login') LOGIN
+
+
+each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
+    h1#menu-heading= category
+        .grid-container
+            each item in menuItems.filter(i => i.category === category)
+                .card
+                    img(src=item.imageUrl alt=item.name)
+                .overlay
+                    p= item.description
+                .food-name 
+                    h4= item.name
+                    h4 $#{item.price}
+                button(type='button') Add to Bag
+    
