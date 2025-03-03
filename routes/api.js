@@ -37,4 +37,15 @@ router.post("/employees", async (req, res) => {
     }
 });
 
+// Use Menu.find() to retrieve all info in JSON format
+router.get("/menu", async (req, res) => {
+    try {
+        const menuItems = await Menu.find();
+        res.status(200).json(menuItems);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 module.exports = router;
