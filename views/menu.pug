@@ -1,5 +1,4 @@
 doctype html
-| PASTE YOUR HTML CODE HEre
 meta(charset='UTF-8')
 meta(name='description' content='The Copper Fork')
 meta(name='keywords' content='Copper Fork, Restaurant, Menu')
@@ -23,12 +22,12 @@ each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
     h1#menu-heading= category
         .grid-container
             each item in menuItems.filter(i => i.category === category)
-            .card
-                img(src=item.imageUrl alt=item.name)
-            .overlay
-                p= item.description
-            .food-name 
-                h4= item.name
-                h4 $#{item.price}
-            button(type='button') Add to Bag
+                .card
+                    img(src=item.imageUrl alt=item.name)
+                .overlay
+                    p= item.description
+                .food-name 
+                    h4= item.name
+                    h4 $#{item.price}
+                button(type='button') Add to Bag
     
