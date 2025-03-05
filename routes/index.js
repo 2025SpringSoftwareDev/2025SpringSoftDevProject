@@ -46,7 +46,7 @@ router.get('/reservation', (req, res) => {
 });
 
 router.get('/catering', (req, res) => {
-    res.render('catering');
+    res.sendFile(path.join(__dirname, '../public/HTML/catering.html'));
 })
 
 router.get('/order', (req, res) => {

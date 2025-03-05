@@ -8,6 +8,7 @@ head
   title The Copper Fork
   link(rel='stylesheet' href='/stylesheets/banner.css')
   link(rel='stylesheet' href='/stylesheets/menu.css')
+  script(src='/js/cart.js')
 header.banner
   a.logo(href='/') The Copper Fork
   nav.nav
@@ -16,6 +17,7 @@ header.banner
     a(href='/reservation') RESERVATIONS
     a(href='/catering') CATERING
     a(href='/login') LOGIN
+    a#card-count(href='/cart') 0
 
 
 each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
@@ -29,5 +31,5 @@ each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
                 .food-name 
                     h4= item.name
                     h4 $#{item.price}
-                button(type='button') Add to Bag
+                button#add-to-bag(type='button') Add to Bag
     
