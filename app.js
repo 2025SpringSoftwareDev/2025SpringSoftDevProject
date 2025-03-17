@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
-const acountRoutes = require('./routes/accounts');
+const accountRoutes = require('./routes/accounts');
 const apiRoutes = require("./routes/api");
 const Menu = require('./models/menuItem'); 
 
@@ -17,6 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api", apiRoutes);
+app.use("/",accountRoutes)
+app.use('/', indexRouter);
 
 // Connect to MongoDB using environment variable
 const mongoURI = process.env.MONGO_CON;
@@ -45,8 +47,7 @@ app.set('views', path.join(__dirname, 'views'));
 // });
 
 // Use the router
-app.use('/', indexRouter);
-app.use('/account', acountRoutes);
+
 
 // Start the server
 app.listen(PORT, () => {
