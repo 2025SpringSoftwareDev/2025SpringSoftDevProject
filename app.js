@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
-const userRoutes = require('./routes/user');
+const acountRoutes = require('./routes/accounts');
 const apiRoutes = require("./routes/api");
 const Menu = require('./models/menuItem'); 
 
@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Use the router
 app.use('/', indexRouter);
-app.use('/user', userRoutes);
+app.use('/account', acountRoutes);
 
 // Start the server
 app.listen(PORT, () => {
