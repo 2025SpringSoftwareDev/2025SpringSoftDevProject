@@ -2,6 +2,7 @@
 //Description: Script file to update cart count and make Add to Bag buttons functional on menu page
 
 $(document).ready(function () {
+  console.log("hello World");
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
