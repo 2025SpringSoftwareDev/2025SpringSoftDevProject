@@ -9,8 +9,9 @@ $(document).ready(function () {
     $("#cart-count").text(totalItems);
   }
 
-  $("#addToBag").on("click", function () {
-    //let productId = $(this).data("id");
+  $('addToBag').on("click", function () {
+    console.log("hello world")
+    let productId = $(this).data("id");
     let productName = $(this).data("name");
     let productPrice = $(this).data("price");
 
