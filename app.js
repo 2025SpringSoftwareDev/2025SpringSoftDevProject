@@ -4,10 +4,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const indexRouter = require("./routes/index");
-const userRoutes = require("./routes/user");
+const indexRouter = require('./routes/index');
+const accountRoutes = require('./routes/accounts');
 const apiRoutes = require("./routes/api");
-const Menu = require("./models/menuItem");
+const Menu = require('./models/menuItem'); 
+const session = require("express-session");
 
 const app = express();
 const PORT = 3000;
@@ -15,7 +16,17 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === "production" }
+}));
+
 app.use("/api", apiRoutes);
+app.use("/",accountRoutes)
+app.use('/', indexRouter);
 
 // Connect to MongoDB using environment variable
 const mongoURI = process.env.MONGO_CON;
@@ -44,10 +55,6 @@ app.get("/menu", async (req, res) => {
     res.status(500).send("Error fetching menu items.");
   }
 });
-
-// Use the router
-app.use("/", indexRouter);
-app.use("/user", userRoutes);
 
 // Start the server
 app.listen(PORT, () => {
