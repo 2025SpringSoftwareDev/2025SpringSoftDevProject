@@ -48,8 +48,9 @@ router.post("/login", async (req, res) => {
 
         // Store user in session
         req.session.userId = user._id;
+        req.session.role = user.role;
 
-        res.redirect("/dashboard");
+        res.redirect("/");
     } catch (error) {
         console.error("Login Error:", error);
         res.status(500).send("Error logging in.");

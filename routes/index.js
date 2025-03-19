@@ -8,6 +8,32 @@ function requireAuth(req, res, next) {
     }
     next();
 }
+function employeeOnly(req, res, next) {
+    requireAuth(req, res, () => {
+        if (!["employee", "supervisor", "admin"].includes(req.session.role)) {
+            return res.status(403).send("Access Denied");
+        }
+        next();
+    });
+}
+
+function supervisorOnly(req, res, next) {
+    requireAuth(req, res, () => {
+        if (!["supervisor", "admin"].includes(req.session.role)) {
+            return res.status(403).send("Supervisors Only");
+        }
+        next();
+    });
+}
+
+function adminOnly(req, res, next) {
+    requireAuth(req, res, () => {
+        if (req.session.role !== "admin") {
+            return res.status(403).send("Admins Only");
+        }
+        next();
+    });
+}
 
 // This is how we connect to a pug view
 // router.get('/', (req, res) => {
@@ -48,7 +74,7 @@ router.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
 });
 
-router.get('/reservation', (req, res) => {
+router.get('/reservation', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/reservation.html'));
 });
 
@@ -60,7 +86,7 @@ router.get('/order', (req, res) => {
     res.render('order');
 })
 
-router.get('/addItem', requireAuth, (req, res) => {
+router.get('/addItem', supervisorOnly, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/addMenuItem.html'));
 });
 
