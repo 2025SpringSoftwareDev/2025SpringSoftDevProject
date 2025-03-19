@@ -1,0 +1,123 @@
+[
+    {
+      "type": "Appetizer",
+      "name": "Chips and Salsa",
+      "description": "Restaurant style tortilla chips with homemade salsa",
+      "price": 6.99,
+      "calories": 300,
+      "available": true
+    },
+    {
+      "type": "Appetizer",
+      "name": "Bone-In Buffalo Wings",
+      "description": "Smoked then fried bone-in chicken wings tossed in your choice of buffalo or honey BBQ sauce",
+      "price": 9.99,
+      "calories": 850,
+      "available": true
+    },
+    {
+      "type": "Appetizer",
+      "name": "Onion Rings",
+      "description": "Light and crispy battered onion rings deep-fried and served with classic ranch and chipotle ranch",
+      "price": 8.99,
+      "calories": 700,
+      "available": true
+    },
+    {
+      "type": "Entree",
+      "name": "12oz Ribeye Steak",
+      "description": "USDA Choice Reserve Ribeye Steak cooked to your preferred doneness",
+      "price": 18.99,
+      "calories": 1200,
+      "available": true
+    },
+    {
+      "type": "Entree",
+      "name": "Fried Chicken Dinner",
+      "description": "Half chicken breaded in a light crispy batter then fried to golden perfection",
+      "price": 14.99,
+      "calories": 950,
+      "available": true
+    },
+    {
+      "type": "Entree",
+      "name": "Spaghetti & Meatballs",
+      "description": "Spaghetti topped with housemade beef & pork meatballs and housemade tomato sauce",
+      "price": 14.99,
+      "calories": 1100,
+      "available": true
+    },
+    {
+      "type": "Entree",
+      "name": "Bacon Cheeseburger",
+      "description": "1/4lb patty made with our in-house beef blend, topped with our burger sauce and your choice of lettuce, pickle, tomato",
+      "price": 13.99,
+      "calories": 1000,
+      "available": true
+    },
+    {
+      "type": "Soup and Salad",
+      "name": "Tomato Soup",
+      "description": "Roasted vegetables blended with fresh tomatoes, topped with cream and pumpkin seeds",
+      "price": 8.99,
+      "calories": 400,
+      "available": true
+    },
+    {
+      "type": "Soup and Salad",
+      "name": "French Onion Soup",
+      "description": "Caramelized onions in beef broth under melty provolone cheese",
+      "price": 8.99,
+      "calories": 450,
+      "available": true
+    },
+    {
+      "type": "Soup and Salad",
+      "name": "Caesar Salad",
+      "description": "Romaine lettuce, croutons, parmesan cheese, and grilled chicken, topped with housemade Caesar dressing",
+      "price": 8.99,
+      "calories": 550,
+      "available": true
+    },
+    {
+      "type": "Soup and Salad",
+      "name": "House Salad",
+      "description": "Iceberg lettuce, tomato, croutons, and grilled chicken with your choice of housemade salad dressing",
+      "price": 13.99,
+      "calories": 600,
+      "available": true
+    },
+    {
+      "type": "Side",
+      "name": "Mashed Potatoes",
+      "description": "Creamy mashed potatoes with butter and herbs",
+      "price": 2.99,
+      "calories": 200,
+      "available": true
+    },
+    {
+      "type": "Side",
+      "name": "French Fries",
+      "description": "Crispy golden French fries",
+      "price": 2.99,
+      "calories": 350,
+      "available": true
+    },
+    {
+      "type": "Side",
+      "name": "Steamed Vegetables",
+      "description": "A mix of steamed seasonal vegetables",
+      "price": 2.99,
+      "calories": 150,
+      "available": true
+    },
+    {
+      "type": "Side",
+      "name": "Dirty Rice",
+      "description": "Cajun-seasoned rice with ground beef and peppers",
+      "price": 2.99,
+      "calories": 300,
+      "available": true
+    }
+  ]
+  
