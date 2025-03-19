@@ -1,5 +1,5 @@
 // Author: Jake Schellhorn
-// Pug file to render menu page after connecting to databa
+// Pug file to render cart from local storage
 doctype html
 meta(charset='UTF-8')
 meta(name='description' content='The Copper Fork')
@@ -22,18 +22,9 @@ header.banner
     a(href='/login') LOGIN
     a#cart-count(href="/cart") CART 0
 
-
-each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
-    h1#menu-heading= category
-        .grid-container
-            each item in menuItems
-                if item.type == category
-                    .card
-                        img(src=item.imageUrl alt = item.name)
-                        .overlay
-                            p= item.description
-                        .food-name 
-                            h4= item.name
-                            h4 $#{item.price}
-                        button.add-to-bag(type='button', data-id= item.id, data-name=item.name, data-price=item.price) Add to Bag
-    
+body
+    h1 Your Cart
+    div#cart-items
+    h2#empty-cart-message Your cart is empty.
+    h2#cart-total Total: 
+    button#clear-cart(type="button") Clear cart

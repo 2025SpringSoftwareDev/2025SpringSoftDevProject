@@ -5,7 +5,7 @@ $(document).ready(function () {
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    $("#cart-count").html("CART ", totalItems);
+    $("#cart-count").html("CART " + totalItems);
   }
 
   $(".add-to-bag").click(function () {
@@ -33,4 +33,83 @@ $(document).ready(function () {
 
   // Update cart count on page load
   updateCartCount();
+
+  function loadCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartItemsContainer = $("#cart-items");
+    let totalPrice = 0;
+
+    cartItemsContainer.empty(); // Clear existing items before appending new ones
+
+    if (cart.length === 0) {
+      $("#empty-cart-message").show();
+      $("#cart-total").text("0.00");
+      return;
+    }
+
+    $("#empty-cart-message").hide();
+
+    cart.forEach((item, index) => {
+      let itemTotal = item.price * item.quantity;
+      totalPrice += itemTotal;
+
+      let cartItemHtml = `
+        <div class="cart-item">
+          <h2>${item.name} $${item.price.toFixed(2)}
+          <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${item.quantity} <button class="increase" data-index="${index}">+</button>
+          <h2>Total: $${itemTotal.toFixed(2)}
+          <button class="remove-item" data-index="${index}">Remove</button>
+        </div>
+        <hr>
+      `;
+      cartItemsContainer.append(cartItemHtml);
+    });
+
+    $("#cart-total").text("Total:" + totalPrice.toFixed(2));
+  }
+
+  // Event Listener for Clearing Cart
+  $("#clear-cart").click(function () {
+    localStorage.removeItem("cart");
+    loadCart();
+    updateCartCount();
+  });
+
+  // Event Listeners for Updating Quantity
+  $(document).on("click", ".increase", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let index = $(this).data("index");
+    cart[index].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
+  });
+
+  $(document).on("click", ".decrease", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let index = $(this).data("index");
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1); // Remove item if quantity is 0
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
+  });
+
+  // Event Listener for Removing Items
+  $(document).on("click", ".remove-item", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let index = $(this).data("index");
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
+  });
+
+  // Load cart on page load
+  loadCart();
+
 });
