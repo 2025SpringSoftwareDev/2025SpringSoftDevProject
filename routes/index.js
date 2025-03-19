@@ -53,5 +53,9 @@ router.get('/order', (req, res) => {
     res.render('order');
 })
 
+router.get('/cart', (req, res) => {
+    res.render('cart');
+})
+
 
 module.exports = router;
