@@ -20,7 +20,7 @@ header.banner
     a(href='/reservation') RESERVATIONS
     a(href='/catering') CATERING
     a(href='/login') LOGIN
-    a#card-count(href='/cart') 0
+    a#cart-count(href="cart.pug") CART 0
 
 
 each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
@@ -35,5 +35,5 @@ each category in ["Appetizers", "Entrees", "Soups and Salads", "Sides"]
                         .food-name 
                             h4= item.name
                             h4 $#{item.price}
-                        button#add-to-bag(type='button') Add to Bag
+                        button.add-to-bag(type='button', data-id= item.id, data-name=item.name, data-price=item.price) Add to Bag
     
