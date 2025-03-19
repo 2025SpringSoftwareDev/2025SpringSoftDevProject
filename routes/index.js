@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
+function requireAuth(req, res, next) {
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
+    next();
+}
+
 // This is how we connect to a pug view
 // router.get('/', (req, res) => {
 //     res.render('index');
@@ -53,7 +60,7 @@ router.get('/order', (req, res) => {
     res.render('order');
 })
 
-router.get('/addItem', (req, res) => {
+router.get('/addItem', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/addMenuItem.html'));
 });
 

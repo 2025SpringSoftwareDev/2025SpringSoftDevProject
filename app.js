@@ -8,7 +8,7 @@ const indexRouter = require('./routes/index');
 const accountRoutes = require('./routes/accounts');
 const apiRoutes = require("./routes/api");
 const Menu = require('./models/menuItem'); 
-
+const session = require("express-session");
 
 const app = express();
 const PORT = 3000;
@@ -16,6 +16,14 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === "production" }
+}));
+
 app.use("/api", apiRoutes);
 app.use("/",accountRoutes)
 app.use('/', indexRouter);
