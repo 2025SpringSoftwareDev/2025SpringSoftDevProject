@@ -79,16 +79,16 @@
         text-decoration: underline;
       }
     </style>
+    <header class="banner">
+      <div class="logo"><a href="/">The Copper Fork</a></div>
+      <nav class="nav">
+        <a href="/menu">MENU</a>
+        <a href="/order">ORDER NOW</a>
+        <a href="/reservation">RESERVATIONS</a>
+        <a href="/catering">CATERING</a>
+      </nav>
+    </header>
   </head>
-  <header class="banner">
-    <div class="logo"><a href="/">The Copper Fork</a></div>
-    <nav class="nav">
-      <a href="/menu">MENU</a>
-      <a href="/order">ORDER NOW</a>
-      <a href="/reservation">RESERVATIONS</a>
-      <a href="/catering">CATERING</a>
-    </nav>
-  </header>
   <body>
     <div class="container">
       <h2>Want us to Cater your Event? Fill out the form below</h2>
@@ -127,7 +127,42 @@
 
         <label for="email">Email:</label><br />
         <input type="email" id="email" name="email" required /><br />
+        <button type="submit">Book Event</button>
+
+        <p class="error" id="error-message">Fill in all required fields</p>
       </form>
     </div>
-    </body>
+
+    <script>
+      document
+        .getElementById("cateringForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let name = document.getElementById("name").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let location = document.getElementById("location").value;
+          let date = document.getElementById("eventDate").value;
+          let food = document.getElementById("menuOptions").value;
+          let specialInstructions = document.getElementById("specialInstructions").value;
+          let errorMessage = document.getElementById("error-message");
+
+          if (
+            name === "" ||
+            email === "" ||
+            date === "" ||
+            location === ""
+          ) {
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          errorMessage.style.display = "none";
+          //confirmation message
+          alert(
+            `Catering confirmed for ${name} on ${date} at ${location} for ${food}.`
+          );
+          document.getElementById("reservationForm").reset();
+        });
+    </script>
+  </body>
 </html>
