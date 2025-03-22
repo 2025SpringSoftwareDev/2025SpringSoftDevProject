@@ -35,17 +35,6 @@ button {
   cursor: pointer;
 }
 
-a {
-  text-decoration: none;
-  padding-bottom: 5px;
-  color: var(--theme-color-1);
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--theme-color-2);
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -77,12 +66,11 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(44, 41, 41, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   background: lienar-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
-  z-index: 10;
 }
 
 .nav .nav-links {
@@ -92,28 +80,68 @@ header {
   gap: 50px;
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  display: inline-block;
 }
 
 .nav-links li a {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  text-transform: uppercase;
   transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color:white; 
+  font-weight: bold;
 }
 
 .nav-links a:hover {
   color: #ffa451;
-  font-size: 18px;
+  font-size: 20px;
   transform: scale(1.1);
 }
 
 .logo {
   color: var(--theme-color-1);
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 125px;
+  list-style: none;
+  padding: 10px;
 }
 
+.login {
+  margin-left: auto;
+  text-transform: uppercase; 
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 20px 10px;
+  margin-right: 75px;
+  border-radius: 15px;
+  background-color: var(--theme-color-1);
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.login a:hover {
+  font-size: 20px;
+  transform: scale(1.1);
+}
 .nav-button {
   color: var(--theme-color-1);
   font-size: 23px;
@@ -131,17 +159,6 @@ header {
   gap: 20px;
 }
 
-.nav a {
-  color: #ffa451;
-  font-weight: bold;
-  transition: color 0.3s ease;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  font-size: 25px;
-}
-
-.nav a:hover {
-  color: var(--theme-color-1);  
-}
 
 .exit-menu {
   position: absolute;
@@ -166,7 +183,6 @@ li a {
 
 li a:hover, .active:hover {
   color: var(--theme-color-2);
-  border-bottom: 2px solid var(--theme-color-2);
 }
 
 /* Centered Content */
