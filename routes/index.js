@@ -90,4 +90,8 @@ router.get('/addItem', supervisorOnly, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/addMenuItem.html'));
 });
 
+router.get('/addUser', adminOnly, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/addUser.html'));
+});
+
 module.exports = router;
