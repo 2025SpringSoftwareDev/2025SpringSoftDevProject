@@ -1,0 +1,32 @@
+<!-- Author: Jake Schellhorn-->
+<!-- HTML to render cart from local storage-->
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<meta name="description" content="The Copper Fork" />
+<meta name="keywords" content="Copper Fork, Restaurant, Menu" />
+<meta name="author" content="Jake Schellhorn" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+  <title>The Copper Fork</title>
+  <link rel="stylesheet" href="/stylesheets/banner.css" />
+  <link rel="stylesheet" href="/stylesheets/menu.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/cart.js"></script>
+</head>
+<header class="banner">
+  <a class="logo" href="/">The Copper Fork</a>
+  <nav class="nav">
+    <a href="/menu">MENU</a><a href="/reservation">RESERVATIONS</a
+    ><a href="/catering">CATERING</a><a href="/login">LOGIN</a
+    ><a id="cart-count" href="/cart">CART</a>
+  </nav>
+</header>
+
+<body>
+  <h1>Your Cart</h1>
+  <div id="cart-items"></div>
+  <h2 id="empty-cart-message">Your cart is empty.</h2>
+  <h2 id="cart-total">Total:</h2>
+  <button id="clear-cart" type="button">Clear cart</button>
+</body>
