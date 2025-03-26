@@ -12,6 +12,11 @@ head
   link(rel='stylesheet' href='/stylesheets/menu.css')
   script(src="https://code.jquery.com/jquery-3.6.0.min.js")
   script(src="/js/cart.js")
+  script 
+    fetch("/api/menu")  // Fetch from API route
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched menu items:", data);
 header.banner
   a.logo(href='/') The Copper Fork
   nav.nav

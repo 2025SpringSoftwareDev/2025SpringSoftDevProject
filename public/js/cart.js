@@ -2,20 +2,28 @@
 //Description: Script file to update cart count and make Add to Bag buttons functional on menu page
 
 $(document).ready(function () {
+  console.log("document is ready");
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     $("#cart-count").html("CART " + totalItems);
   }
 
-  $(".add-to-bag").click(function () {
-    let productId = $(this).data("id");
-    let productName = $(this).data("name");
-    let productPrice = $(this).data("price");
+  document.body.addEventListener("click", function(event)  {
+    console.log('button pressed')
+    if(event.target && event.target.classList.contains("add-to-bag")){
+      const button = event.target;
+      const id = button.getAttribute("data-id");
+      const name = button.getAttribute("data-name");
+      const price = Number(button.getAttribute("data-price"));
+      console.log(`Added to bag: ${name}, Price: $${price}, ID: ${id}`);
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let existingItem = cart.find((item) => item.id === productId);
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ id, name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+    let existingItem = cart.find((item) => item.id === id);
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
@@ -26,8 +34,8 @@ $(document).ready(function () {
         quantity: 1,
       });
     }
+  }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
   });
 
@@ -56,7 +64,7 @@ $(document).ready(function () {
 
       let cartItemHtml = `
         <div class="cart-item">
-          <h2>${item.name} $${item.price.toFixed(2)}
+          <h2>${item.name} $${item.price}
           <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${item.quantity} <button class="increase" data-index="${index}">+</button>
           <h2>Total: $${itemTotal.toFixed(2)}
           <button class="remove-item" data-index="${index}">Remove</button>
