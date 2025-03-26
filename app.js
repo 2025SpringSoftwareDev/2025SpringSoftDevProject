@@ -18,11 +18,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === "production" }
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true, 
+      sameSite: "lax"
+  }
 }));
+
+
 
 app.use("/api", apiRoutes);
 app.use("/",accountRoutes)
