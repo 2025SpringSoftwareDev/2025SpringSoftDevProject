@@ -78,6 +78,10 @@ router.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
 });
 
+router.get('/catering', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/catering.html'));
+  });
+
 // router.get('/catering', (req, res) => {
 //     res.render('catering');
 // });
