@@ -94,7 +94,7 @@ router.get("/reservation", requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/reservation.html"));
 });
 
-router.get("/cart", requireAuth, (req, res) => {
+router.get("/cart", (req, res) => {
   res.render("cart");
 });
 
