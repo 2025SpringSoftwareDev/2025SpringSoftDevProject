@@ -86,6 +86,11 @@ router.get('/menu', (req, res) => {
 //     res.render('order');
 // });
 
+router.get('/cart', (req, res) => {
+    res.render('cart');
+})
+
+
 //
 // auth required
 //
