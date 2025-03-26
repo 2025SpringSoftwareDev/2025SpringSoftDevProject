@@ -75,7 +75,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/menu', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
+  res.render('menu')
 });
 
 router.get('/catering', (req, res) => {
