@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
+// lock routes to require an account access
 function requireAuth(req, res, next) {
     if (!req.session.userId) {
         return res.redirect("/login");
@@ -9,6 +10,7 @@ function requireAuth(req, res, next) {
     next();
 }
 
+// lock routes to require employee access
 function employeeOnly(req, res, next) {
     requireAuth(req, res, () => {
         if (!["employee", "supervisor", "admin"].includes(req.session.role)) {
@@ -18,6 +20,7 @@ function employeeOnly(req, res, next) {
     });
 }
 
+// lock routes to require supervisor access
 function supervisorOnly(req, res, next) {
     requireAuth(req, res, () => {
         if (!["supervisor", "admin"].includes(req.session.role)) {
@@ -27,6 +30,7 @@ function supervisorOnly(req, res, next) {
     });
 }
 
+// lock routes to require admin access
 function adminOnly(req, res, next) {
     requireAuth(req, res, () => {
         if (req.session.role !== "admin") {
@@ -35,6 +39,14 @@ function adminOnly(req, res, next) {
         next();
     });
 }
+
+//
+// End of functions
+//
+
+//
+// no auth endpoints
+//
 
 // This is how we connect to a pug view
 // router.get('/', (req, res) => {
@@ -54,14 +66,6 @@ router.get('/employee', (req, res) => {
     res.render('employeeDashboard');
 });
 
-// router.get('/signup', (req, res) => {
-//     res.render('signup');
-// });
-
-// router.get('/login', (req, res) => {
-//     res.render('login');
-// });
-
 router.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/signup.html'));
 });
@@ -74,25 +78,45 @@ router.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
 });
 
+
+
+router.get('/catering', (req, res) => {
+    res.render('catering');
+});
+
+router.get('/order', (req, res) => {
+    res.render('order');
+});
+
+//
+// auth required
+//
+
 router.get('/reservation', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/reservation.html'));
 });
 
-router.get('/catering', (req, res) => {
-    res.render('catering');
-})
+//
+// employee+ auth required
+//
 
-router.get('/order', (req, res) => {
-    res.render('order');
-})
 
-router.get('/addItem', supervisorOnly, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/HTML/addMenuItem.html'));
+
+//
+// supervisor+ auth required
+//
+
+router.get('/editMenu', supervisorOnly, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/supervisorManageMenu.html'));
 });
 
-router.get('/addUser', adminOnly, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/HTML/adminAddUser.html'));
+router.get('/viewReservation', supervisorOnly, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/supervisorReservation.html'));
 });
+
+//
+// admin auth required
+//
 
 router.get('/accounts', adminOnly, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/adminManageAccounts.html'));
