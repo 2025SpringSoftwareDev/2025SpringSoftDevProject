@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Panel - Reservations</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            h2 {
+                text-align: center;
+                color: #b87333;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                background-color: #b87333;
+                color: white;
+            }
+            .edit, .delete {
+                cursor: pointer;
+                padding: 5px 10px;
+                border: none;
+                color: white;
+                margin: 2px;
+            }
+            .edit { background-color: #007bff; }
+            .delete { background-color: #dc3545; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Admin Panel - Manage Reservations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="reservationTable">
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function loadReservations() {
+                fetch('/api/reservations')
+                    .then(response => response.json())
+                    .then(reservations => {
+                        let tableBody = document.getElementById("reservationTable");
+                        tableBody.innerHTML = "";
+                        reservations.forEach((res, index) => {
+                            let row = `<tr>
+                                <td><input type="text" value="${res.name}" id="name-${res.id}"></td>
+                                <td><input type="email" value="${res.email}" id="email-${res.id}"></td>
+                                <td><input type="date" value="${res.date}" id="date-${res.id}"></td>
+                                <td><input type="time" value="${res.time}" id="time-${res.id}"></td>
+                                <td><input type="number" value="${res.guests}" id="guests-${res.id}" min="1"></td>
+                                <td>
+                                    <button class="edit" onclick="editReservation(${res.id})">Save</button>
+                                    <button class="delete" onclick="deleteReservation(${res.id})">Delete</button>
+                                </td>
+                            </tr>`;
+                            tableBody.innerHTML += row;
+                        });
+                    });
+            }
+            function editReservation(id) {
+                let updatedReservation = {
+                    name: document.getElementById(`name-${id}`).value,
+                    email: document.getElementById(`email-${id}`).value,
+                    date: document.getElementById(`date-${id}`).value,
+                    time: document.getElementById(`time-${id}`).value,
+                    guests: document.getElementById(`guests-${id}`).value
+                };
+                fetch(`/api/reservations/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updatedReservation)
+                }).then(() => {
+                    alert("Reservation updated!");
+                    loadReservations();
+                });
+            }
+            function deleteReservation(id) {
+                const confirmed = confirm("Are you sure you want to delete this reservation?");
+                if (!confirmed) return;
+
+                fetch(`/api/reservations/${id}`, { method: 'DELETE' })
+                    .then(() => {
+                        alert("Reservation deleted.");
+                        loadReservations();
+                    })
+                    .catch(() => {
+                        alert("Failed to delete reservation.");
+                    });
+            }
+            loadReservations();
+        </script>
+    </body>
+</html>
