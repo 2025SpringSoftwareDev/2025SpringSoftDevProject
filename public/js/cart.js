@@ -5,7 +5,7 @@ $(document).ready(function () {
   console.log("document is ready");
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let totalItems = cart.length || 0
     $("#cart-count").html("CART " + totalItems);
   }
 
@@ -15,27 +15,24 @@ $(document).ready(function () {
       const button = event.target;
       const id = button.getAttribute("data-id");
       const name = button.getAttribute("data-name");
-      const price = Number(button.getAttribute("data-price"));
+      const price = button.getAttribute("data-price");
       console.log(`Added to bag: ${name}, Price: $${price}, ID: ${id}`);
 
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push({ id, name, price });
+      let existingItem = cart.find((item) => item.id === id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id,
+          name,
+          price,
+          quantity: 1,
+        });
+      }
       localStorage.setItem("cart", JSON.stringify(cart));
-
-    let existingItem = cart.find((item) => item.id === id);
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({
-        id: productId,
-        name: productName,
-        price: productPrice,
-        quantity: 1,
-      });
     }
-  }
-
     updateCartCount();
   });
 
