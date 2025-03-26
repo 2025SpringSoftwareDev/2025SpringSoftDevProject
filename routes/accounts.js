@@ -7,7 +7,7 @@ const router = express.Router();
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 
-// Signup Route, Handles POST request from signup form
+// handles sign in
 router.post("/signup", async (req, res) => {
     try {
         const { name, email, password} = req.body;
