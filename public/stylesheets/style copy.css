@@ -1,7 +1,7 @@
 /* Global Variables */
 :root {
-  --font-sans: 'PT Sans', sans-serif;
-  --font-mono: 'Overpass Mono', monospace;
+  --font-sans: "PT Sans", sans-serif;
+  --font-mono: "Overpass Mono", monospace;
   --theme-primary: #da8637;
   --theme-secondary: #b87333;
   --background-color: #ffebcd;
@@ -14,7 +14,8 @@ header {
   left: 0;
   width: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
-    url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
+    url("http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg")
+      no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   display: flex;
@@ -82,7 +83,7 @@ body {
 /* Form Container */
 .container {
   position: absolute;
-  top:100px;
+  top: 100px;
   max-width: 400px;
   width: 100%;
   background: white;
@@ -110,7 +111,9 @@ label {
   display: block;
 }
 
-input, select, button {
+input,
+select,
+button {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
