@@ -43,17 +43,6 @@ mongoose.connect(mongoURI, {
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-
-// populates the menu.pug with entries from the database. 
-// app.get("/menu", async (req, res) => {
-//     try {
-//         const menuItems = await Menu.find();
-//         res.render("menu", { menuItems });
-//     } catch (err) {
-//         res.status(500).send("Error fetching menu items.");
-//     }
-// });
-
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);

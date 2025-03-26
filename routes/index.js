@@ -8,6 +8,7 @@ function requireAuth(req, res, next) {
     }
     next();
 }
+
 function employeeOnly(req, res, next) {
     requireAuth(req, res, () => {
         if (!["employee", "supervisor", "admin"].includes(req.session.role)) {
@@ -69,7 +70,6 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/login.html'));
 });
 
-
 router.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/HTML/menu.html'));
 });
@@ -91,7 +91,11 @@ router.get('/addItem', supervisorOnly, (req, res) => {
 });
 
 router.get('/addUser', adminOnly, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/HTML/addUser.html'));
+    res.sendFile(path.join(__dirname, '../public/HTML/adminAddUser.html'));
+});
+
+router.get('/accounts', adminOnly, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/HTML/adminManageAccounts.html'));
 });
 
 module.exports = router;

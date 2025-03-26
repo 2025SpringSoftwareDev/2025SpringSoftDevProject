@@ -57,27 +57,39 @@ router.get("/menu", async (req, res) => {
     }
 });
 
+// Get all users, Admin
+router.get("/api/accounts", adminOnly, async (req, res) => {
+    try {
+        const users = await User.find({}, "name email role"); // Exclude passwords
+        res.json(users);
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ error: "Error fetching users." });
+    }
+});
+
+// Create a new user, Admin
 router.post("/api/accounts", adminOnly, async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
 
-        // Ensure role is valid
-        const validRoles = ["customer", "employee", "supervisor", "admin"];
-        if (!validRoles.includes(role)) {
-            return res.status(400).json({ error: "Invalid role selected." });
-        }
-
-        // Hash Password
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Save to DB
         const newUser = new User({ name, email, password: hashedPassword, role });
         await newUser.save();
 
         res.status(201).json({ message: "User created successfully!" });
     } catch (error) {
-        console.error("User Creation Error:", error);
         res.status(500).json({ error: "Error creating user." });
+    }
+});
+
+// 🔹 Delete a user, Admin 
+router.delete("/api/accounts/:id", adminOnly, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.json({ message: "User deleted successfully!" });
+    } catch (error) {
+        res.status(500).json({ error: "Error deleting user." });
     }
 });
 
