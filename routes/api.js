@@ -72,32 +72,6 @@ router.get("/menu", async (req, res) => {
 // user required
 //
 
-// router.post("/reservations", async (req, res) => {
-//     try {
-//         if (!req.user) {
-//             return res.status(401).json({ error: "Not authenticated" });
-//         }
-
-//         const { date, time, guests, requests } = req.body;
-//         if (!date || !time || !guests) {
-//             return res.status(400).json({ error: "Missing required fields" });
-//         }
-
-//         const newReservation = new Reservation({
-//             name: req.user.name,
-//             email: req.user.email,
-//             date,
-//             time,
-//             guests,
-//             requests: requests || "",
-//         });
-
-//         await newReservation.save();
-//         res.status(201).json({ message: "Reservation confirmed", reservation: newReservation });
-//     } catch (error) {
-//         res.status(500).json({ error: "Server error" });
-//     }
-// });
 
 router.post("/reservations", requireAuth, async (req, res) => {
     try {

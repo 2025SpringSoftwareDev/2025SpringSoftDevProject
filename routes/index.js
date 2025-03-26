@@ -58,13 +58,13 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/homepage.html'));
 });
 
-router.get('/customer', (req, res) => {
-    res.render('customerDashboard');
-});
+// router.get('/customer', (req, res) => {
+//     res.render('customerDashboard');
+// });
 
-router.get('/employee', (req, res) => {
-    res.render('employeeDashboard');
-});
+// router.get('/employee', (req, res) => {
+//     res.render('employeeDashboard');
+// });
 
 router.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/signup.html'));
@@ -82,13 +82,9 @@ router.get('/catering', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/catering.html'));
 })
 
-router.get('/order', (req, res) => {
-    res.render('order');
-});
-
-router.get('/cart', (req, res) => {
-    res.render('cart');
-})
+// router.get('/order', (req, res) => {
+//     res.render('order');
+// });
 
 
 //
@@ -97,6 +93,10 @@ router.get('/cart', (req, res) => {
 
 router.get('/reservation', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/HTML/reservation.html'));
+});
+
+router.get('/cart', requireAuth, (req, res) => {
+    res.render('cart');
 });
 
 //
