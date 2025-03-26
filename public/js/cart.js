@@ -5,19 +5,18 @@ $(document).ready(function () {
   console.log("document is ready");
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let totalItems = cart.length || 0
+    let totalItems = cart.length || 0;
     $("#cart-count").html("CART " + totalItems);
   }
 
-  document.body.addEventListener("click", function(event)  {
-    console.log('button pressed')
-    if(event.target && event.target.classList.contains("add-to-bag")){
+  document.body.addEventListener("click", function (event) {
+    console.log("button pressed");
+    if (event.target && event.target.classList.contains("add-to-bag")) {
       const button = event.target;
       const id = button.getAttribute("data-id");
       const name = button.getAttribute("data-name");
       const price = button.getAttribute("data-price");
       console.log(`Added to bag: ${name}, Price: $${price}, ID: ${id}`);
-
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       let existingItem = cart.find((item) => item.id === id);
@@ -62,7 +61,9 @@ $(document).ready(function () {
       let cartItemHtml = `
         <div class="cart-item">
           <h2>${item.name} $${item.price}
-          <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${item.quantity} <button class="increase" data-index="${index}">+</button>
+          <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${
+        item.quantity
+      } <button class="increase" data-index="${index}">+</button>
           <h2>Total: $${itemTotal.toFixed(2)}
           <button class="remove-item" data-index="${index}">Remove</button>
         </div>
@@ -116,5 +117,4 @@ $(document).ready(function () {
 
   // Load cart on page load
   loadCart();
-
 });

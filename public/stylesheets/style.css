@@ -1,8 +1,8 @@
 /* Global Variables */
 :root {
-  --OverpassMonoFont: 'Overpass Mono', monospace;
-  --PTSansFont: 'PT Sans', sans-serif;
-  --AlexBrushFont: 'Alex Brush', cursive;
+  --OverpassMonoFont: "Overpass Mono", monospace;
+  --PTSansFont: "PT Sans", sans-serif;
+  --AlexBrushFont: "Alex Brush", cursive;
   --lightbrown: rgb(190, 128, 64);
   --white: rgb(255, 255, 255);
   --black: rgb(0, 0, 0);
@@ -45,7 +45,8 @@ ul {
 header {
   min-height: 100vh;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
-    url('http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg') no-repeat center center;
+    url("http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg")
+      no-repeat center center;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -70,7 +71,11 @@ header {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(52, 50, 50, 0.3));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(52, 50, 50, 0.3)
+  );
 }
 
 .nav .nav-links {
@@ -98,7 +103,7 @@ header {
 
 .nav-links a {
   text-decoration: none;
-  color:white; 
+  color: white;
   font-weight: bold;
 }
 
@@ -122,7 +127,7 @@ header {
 
 .login {
   margin-left: auto;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 
 .login a {
@@ -220,7 +225,8 @@ li a {
   transition: all 0.4s ease;
 }
 
-li a:hover, .active:hover {
+li a:hover,
+.active:hover {
   color: var(--theme-color-2);
 }
 
@@ -252,7 +258,8 @@ li a:hover, .active:hover {
   align-items: center;
 }
 
-#asterisk:before, #asterisk:after {
+#asterisk:before,
+#asterisk:after {
   content: "";
   display: inline-block;
   height: 1px;
@@ -356,7 +363,11 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(52, 50, 50, 0.3));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(52, 50, 50, 0.3)
+  );
   font-size: 12px;
   letter-spacing: 1px;
   padding: 10px 30px;
@@ -442,10 +453,10 @@ footer {
     text-align: center;
     margin-top: 10;
   }
-  .card button{
+  .card button {
     padding: 8px 15px;
     margin: 10px;
-    background-color:#b87333;
+    background-color: #b87333;
     border-radius: 8px;
     border: none;
     display: block;
@@ -455,12 +466,13 @@ footer {
     outline: none;
     transition: 0.2s all;
   }
-  .card button:hover{
-    background-color:#965e2a;
+  .card button:hover {
+    background-color: #965e2a;
   }
   .card button:active {
     transform: scale(0.98);
     /* Scaling button to 0.98 to its original size */
     box-shadow: 3px 2px 10px 1px rgba(0, 0, 0, 0.24);
     /* Lowering the shadow */
-  }}
+  }
+}

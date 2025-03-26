@@ -23,7 +23,7 @@
         background: white;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
+      }
       h2 {
         text-align: center;
         color: #b87333;
@@ -80,6 +80,9 @@
         text-decoration: underline;
       }
     </style>
+  </head>
+
+  <body>
     <header class="banner">
       <div class="logo"><a href="/">The Copper Fork</a></div>
       <nav class="nav">
@@ -88,10 +91,10 @@
         <a href="/catering">CATERING</a>
       </nav>
     </header>
-  </head>
-  <body>
+
     <div class="container">
-      <h2>Want us to Cater your Event? Fill out the form below</h2>
+      <h2>Want us to Cater your Event?</h2>
+      <h2>Fill out the form below!</h2>
       <form id="cateringForm">
         <label for="eventDate">Date of Event:</label><br />
         <input
@@ -143,15 +146,12 @@
           let location = document.getElementById("location").value;
           let date = document.getElementById("eventDate").value;
           let food = document.getElementById("menuOptions").value;
-          let specialInstructions = document.getElementById("specialInstructions").value;
+          let specialInstructions = document.getElementById(
+            "specialInstructions"
+          ).value;
           let errorMessage = document.getElementById("error-message");
 
-          if (
-            name === "" ||
-            email === "" ||
-            date === "" ||
-            location === ""
-          ) {
+          if (name === "" || email === "" || date === "" || location === "") {
             errorMessage.style.display = "block";
             return;
           }
