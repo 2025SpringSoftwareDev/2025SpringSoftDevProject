@@ -77,8 +77,8 @@ Project Root
 │   ├── menuItems.js  
 │   ├── user.js  
 ├── node_modules  # Dependencies, auto-managed by npm. don't touch, don't commit
-├── public  # (Static assets)  
-│   ├── HTML  # Static HTML pages (pages that don't change)
+├── public  # assets
+│   ├── HTML  # HTML pages
 │   │   ├── aboutus.html  
 │   ├── images  # All images for the project
 │   ├── stylesheets  # CSS files 
@@ -88,7 +88,7 @@ Project Root
 │   ├── api.js  
 │   ├── index.js  
 │   ├── user.js  
-├── views  # Dynamic pages (pug or html) 
+├── views  # outdated pug file. idk i think we should delete these
 │   ├── login.pug
 │   ├── signup.pug
 │   ├── homepage.html
