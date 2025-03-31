@@ -117,7 +117,42 @@ cd 2025SpringSoftDevProject
 6. use command ```npm start``` to host the webapp locally
 7. use a browser access the web app at ```http://localhost:3000/```
 8. use ```ctrl + c``` to kill the process in the termanal
-   
+
+### Lingering terminal
+In the event you get an error that looks like this, its likely that the app is already started and running.
+```
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+    at listenInCluster (node:net:1994:12)
+    at Server.listen (node:net:2099:7)
+    at Function.listen (C:\Users\s553982\Documents\SoftwareEngPrinc\2025Spring\Group Projects\2025SpringSoftDevProject\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (C:\Users\s553982\Documents\SoftwareEngPrinc\2025Spring\Group Projects\2025SpringSoftDevProject\app.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Object..js (node:internal/modules/cjs/loader:1699:10)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1973:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+```
+ To fix this you will need to end the process running on that port or use a differnt port. If you want to end the process and dont know where its running, use thse these commands.
+```
+Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess
+Stop-Process -Id 11228 -Force 
+```
+replace the number with the app id. 
+
 ### Merge Conflicts
 good luck lol
 
