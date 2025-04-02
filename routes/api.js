@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/accounts");
 const Menu = require("../models/menuItem");
 const Reservation = require("../models/reservations");
+const Order = require("../models/order");
 const bcrypt = require("bcrypt");
 
 // lock routes to require an account access
@@ -101,6 +102,35 @@ router.post("/reservations", requireAuth, async (req, res) => {
   } catch (error) {
     console.error("Error saving reservation:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/cart", async (req, res) =>{
+  try{
+    const {item, quantity, userId} = req.body;
+
+    if (!req.session.userId) {
+      return res.status(401).json({ error: "Unauthorized. Please log in." });
+    }
+
+    // Fetch user info (since name/email are not input fields)
+    const user = await User.findById(req.session.userId);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    
+    date = new Date();
+    const newOrder = new Order({
+      menuItems: [(item, quantity)],
+      userId: userId, 
+      time: date
+  });
+    await newOrder.save();
+    localStorgae.removeItem("cart");
+    loadCart();
+    updateCartCount();
+    res.redirect("/cart");
+  } catch(error){
+    console.error("Order Error", error);
+    res.status(500).send("Error Purchasing Cart.");
   }
 });
 

@@ -60,7 +60,7 @@ $(document).ready(function () {
 
       let cartItemHtml = `
         <div class="cart-item">
-          <h2>${item.name} $${item.price}
+          <h2 id="item">${item.name} <h2 id="quantity">$${item.price}
           <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${
         item.quantity
       } <button class="increase" data-index="${index}">+</button>
@@ -81,6 +81,7 @@ $(document).ready(function () {
     loadCart();
     updateCartCount();
   });
+
 
   // Event Listeners for Updating Quantity
   $(document).on("click", ".increase", function () {
