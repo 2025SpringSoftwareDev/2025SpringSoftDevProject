@@ -1,6 +1,26 @@
 //Author: Jake Schellhorn
 //Description: Script file to update cart count and make Add to Bag buttons functional on menu page
 
+async function fetchUserData() {
+  try {
+    const response = await fetch("/api/user", {
+      credentials: "include",
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch user data");
+
+    const user = await response.json();
+
+    document.getElementById("name").value = user.name || "";
+    document.getElementById("email").value = user.email || "";
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    alert("Could not fetch user information.");
+  }
+}
+
+
+
 $(document).ready(function () {
   console.log("document is ready");
   function updateCartCount() {
@@ -60,7 +80,8 @@ $(document).ready(function () {
 
       let cartItemHtml = `
         <div class="cart-item">
-          <h2 id="item">${item.name} <h2 id="quantity">$${item.price}
+          <h2 id="item">${item.name}</h2>
+          <h2 id="quantity">Price: $${item.price}</h2>
           <h2>Quantity: <button class="decrease" data-index="${index}">-</button> ${
         item.quantity
       } <button class="increase" data-index="${index}">+</button>
@@ -74,6 +95,41 @@ $(document).ready(function () {
 
     $("#cart-total").text("Total:" + totalPrice.toFixed(2));
   }
+
+// Event Listener for Purchasing Cart
+$("#purchase-cart").click(async function () {
+  event.preventDefault();
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+  }
+
+  try {
+      const response = await fetch("/api/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include", // Ensures session cookies are sent
+          body: JSON.stringify({ cart }) // Send cart array
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          alert("Order successfully placed!");
+          localStorage.removeItem("cart"); // Clear cart after order
+          loadCart();
+          updateCartCount();
+      } else {
+          alert("Error placing order: " + data.error);
+      }
+  } catch (error) {
+      console.error("Purchase Error:", error);
+      alert("An error occurred while purchasing.");
+  }
+});
+
 
   // Event Listener for Clearing Cart
   $("#clear-cart").click(function () {

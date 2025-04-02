@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
 
-const menuItem = require("../models/menuItem")
-const account = require("../models/accounts")
-
 const orderSchema = mongoose.Schema({
-    menuItems: [{
-        items: String,
-        quantity: Number
-    }],
+    items: { type: Map, of: Number },
+    totalPrice: {type: Number},
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    time: {type: Date, required: true},
+    time: {type: Date, default: Date.now},
 
 })
 
