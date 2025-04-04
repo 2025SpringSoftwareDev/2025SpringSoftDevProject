@@ -23,22 +23,95 @@ header {
   align-items: center;
   justify-content: center;
   padding-bottom: 100px;
+  padding-top: 15px;
 }
 
-nav {
-  padding: 15px 35px;
+.nav {
   display: flex;
+  padding: 15px 50px;
+  justify-content: space-between;
   align-items: center;
+  top: 0;
+  left: 0;
   width: 100%;
   max-width: 1200px;
   position: relative;
 }
 
+.nav .nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 70px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #ffa451;
+  font-size: 20px;
+  transform: scale(1.1);
+}
+
 .logo {
   color: var(--theme-color-1);
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-grow: 0;
+  gap: 125px;
+  list-style: none;
+  padding: 10px;
+}
+
+.logo a {
+  color: var(--theme-primary);
+  text-decoration: none;
+}
+
+.login {
+  margin-left: auto;
   text-transform: uppercase;
-  border-bottom: 2px solid var(--theme-color-1);
-  font-size: 22px;
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 20px 10px;
+  margin-right: 75px;
+  border-radius: 15px;
+  background-color: var(--theme-primary);
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.login a:hover {
+  font-size: 20px;
+  transform: scale(1.1);
 }
 
 .nav-button {
@@ -46,7 +119,7 @@ nav {
   font-size: 23px;
 }
 
-.nav-menu {
+/* .nav-menu {
   background: rgba(0, 0, 0, 0.9);
   position: fixed;
   right: 0;
@@ -65,7 +138,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
 
 /* General Styling */
 body {
@@ -122,6 +195,7 @@ button {
 }
 
 button {
+  font-weight: bold;
   background-color: var(--theme-primary);
   color: white;
   border: none;
