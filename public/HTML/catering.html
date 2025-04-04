@@ -65,7 +65,7 @@
         text-align: center;
         font-size: 20px;
       }
-      .nav {
+      /* .nav {
         display: flex;
         justify-content: center;
         margin-top: 10px;
@@ -78,17 +78,20 @@
       }
       .nav a:hover {
         text-decoration: underline;
-      }
+      } */
     </style>
   </head>
 
   <body>
-    <header class="banner">
-      <div class="logo"><a href="/">The Copper Fork</a></div>
+    <header>
       <nav class="nav">
-        <a href="/menu">MENU</a>
-        <a href="/reservation">RESERVATIONS</a>
-        <a href="/catering">CATERING</a>
+        <a><div class="logo"><a href="/homepage">The Copper Fork</div></a>
+          <ul class="nav-links">
+            <a href="/menu">MENU</a>
+            <a href="/reservation">RESERVATIONS</a>
+            <a href="cart">ORDER</a>
+            <a href="/catering">CATERING</a>
+          </ul>
       </nav>
     </header>
 
