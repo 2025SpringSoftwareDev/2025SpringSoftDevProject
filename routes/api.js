@@ -108,8 +108,6 @@ router.post("/reservations", requireAuth, async (req, res) => {
 
 router.post("/cart", async (req, res) =>{
   try{  
-    console.log("Received request body:", req.body); // Debugging step
-
     const { cart } = req.body;
 
     if (!cart || !Array.isArray(cart) || cart.length === 0) {
@@ -136,7 +134,6 @@ router.post("/cart", async (req, res) =>{
       userId: user.id,
     });
     await newOrder.save();
-    console.log("Order successfully saved:", newOrder);
 
     res.json({ message: "Order successfully placed!", orderId: newOrder._id });
   } catch (error) {
