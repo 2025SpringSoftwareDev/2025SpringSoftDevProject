@@ -176,6 +176,7 @@ header {
 }
 
 .hero h1 {
+  font-family: 'Dancing Script', cursive;
   font-size: 4rem;
   font-weight: bold;
   color: #da8637;
