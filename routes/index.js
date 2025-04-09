@@ -78,10 +78,6 @@ router.get("/menu", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/menu.html"));
 });
 
-router.get("/catering", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/HTML/catering.html"));
-});
-
 // router.get('/order', (req, res) => {
 //     res.render('order');
 // });
@@ -90,11 +86,15 @@ router.get("/catering", (req, res) => {
 // auth required
 //
 
-router.get("/reservation", requireAuth, (req, res) => {
+router.get("/User/catering", requireAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/catering.html"));
+});
+
+router.get("/User/reservation", requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/reservation.html"));
 });
 
-router.get("/cart", (req, res) => {
+router.get("/User/cart", requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/cart.html"));
 });
 
@@ -102,27 +102,37 @@ router.get("/cart", (req, res) => {
 // employee+ auth required
 //
 
+router.get("/employee/dashboard", employeeOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/employeeDashboard.html"));
+});
+
 //
 // supervisor+ auth required
 //
 
-router.get("/editMenu", supervisorOnly, (req, res) => {
+router.get("/controlPanel", supervisorOnly, (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../public/HTML/supervisorManageMenu.html")
+    path.join(__dirname, "../public/HTML/controlPanel.html")
   );
 });
 
-router.get("/viewReservation", supervisorOnly, (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "../public/HTML/supervisorReservation.html")
-  );
+router.get("/supervisor/menu", supervisorOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/supervisorManageMenu.html"));
+});
+
+router.get("/supervisor/reservations", supervisorOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/supervisorReservation.html"));
+});
+
+router.get("/supervisor/add-item", supervisorOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/addMenuItem.html"));
 });
 
 //
 // admin auth required
 //
 
-router.get("/accounts", adminOnly, (req, res) => {
+router.get("/admin/accounts", adminOnly, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/adminManageAccounts.html"));
 });
 

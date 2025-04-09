@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 // Middleware functions for role-based access
 function requireAuth(req, res, next) {
   if (!req.session.userId) {
-    return res.redirect("/login");
+    return res.status(401).json({ error: "Not authenticated" });
   }
   next();
 }
@@ -121,11 +121,49 @@ router.delete("/menu/:id", supervisorOnly, async (req, res) => {
   }
 });
 
-// Admin routes
-router.get("/accounts", adminOnly, async (req, res) => {
+// Auth check endpoint
+router.get("/auth/check", requireAuth, async (req, res) => {
   try {
-    const users = await User.find({}, "name email role");
-    res.json(users);
+    const user = await User.findById(req.session.userId).select("name email role");
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ 
+      name: user.name,
+      email: user.email,
+      role: user.role
+    });
+  } catch (error) {
+    console.error("Error checking auth:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Admin routes
+router.get("/accounts", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Only admin can see all users
+    if (user.role === "admin") {
+      const users = await User.find({}, "name email role");
+      return res.json(users);
+    }
+    
+    // Supervisor can see employees and customers
+    if (user.role === "supervisor") {
+      const users = await User.find(
+        { role: { $in: ["employee", "customer"] } },
+        "name email role"
+      );
+      return res.json(users);
+    }
+
+    // Regular users can only see their own info
+    res.json([{ name: user.name, email: user.email, role: user.role }]);
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).json({ error: "Error fetching users." });
