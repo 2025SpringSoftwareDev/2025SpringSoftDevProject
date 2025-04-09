@@ -58,14 +58,6 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/homepage.html"));
 });
 
-// router.get('/customer', (req, res) => {
-//     res.render('customerDashboard');
-// });
-
-// router.get('/employee', (req, res) => {
-//     res.render('employeeDashboard');
-// });
-
 router.get("/signup", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/signup.html"));
 });
@@ -77,10 +69,6 @@ router.get("/login", (req, res) => {
 router.get("/menu", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/menu.html"));
 });
-
-// router.get('/order', (req, res) => {
-//     res.render('order');
-// });
 
 //
 // auth required
