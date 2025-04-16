@@ -112,10 +112,6 @@ router.get("/supervisor/reservations", supervisorOnly, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/supervisorReservation.html"));
 });
 
-router.get("/supervisor/add-item", supervisorOnly, (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/HTML/addMenuItem.html"));
-});
-
 //
 // admin auth required
 //

@@ -8,16 +8,25 @@
     <link rel="stylesheet" href="../stylesheets/style copy.css" />
   </head>
   <body>
-    <header class="banner">
-      <div class="logo"><a href="/">The Copper Fork</a></div>
+    <header>
       <nav class="nav">
-        <a href="/admin/accounts">Accounts</a>
-        <a href="/supervisor/reservations">Reservations</a>
-        <a href="/supervisor/menu">Menu</a>
+        <div class="logo">
+          <a href="/controlPanel">Control Panel</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/menu">MENU</a></li>
+          <li><a href="/User/reservation">RESERVATIONS</a></li>
+          <li><a href="/User/catering">CATERING</a></li>
+          <li><a href="/User/cart">CART</a></li>
+        </ul>
+        <div class="login">
+          <a href="/login">Login</a>
+        </div>
       </nav>
     </header>
+
     <div class="container">
-      <h2>Menu Management</h2>
+      <h2>Supervisor Panel - Menu Management</h2>
 
       <!-- Table to display menu items -->
       <table border="1">
