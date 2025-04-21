@@ -115,7 +115,7 @@ router.post("/cart", async (req, res) =>{
 });
 
 // Use reservations.find() to retrieve all info in JSON format
-router.get("/reservations", async (req, res) => {
+router.get("/user/reservations", async (req, res) => {
   try {
     const userReservations = await Reservation.find({ userId: req.session.userId })
       .sort({ date: 1, time: 1 });
@@ -127,6 +127,17 @@ router.get("/reservations", async (req, res) => {
 });
 
 // Supervisor routes
+
+router.get("/reservations", supervisorOnly, async (req, res) => {
+  try {
+    const allReservations = await Reservation.find().sort({ date: 1, time: 1 });
+    res.status(200).json(allReservations);
+  } catch (error) {
+    console.error("Error fetching user reservations:", error);
+    res.status(500).json({ error: "Error fetching reservations" });
+  }
+});
+
 router.post("/menu", supervisorOnly, async (req, res) => {
   try {
     const menuItem = new Menu(req.body);
