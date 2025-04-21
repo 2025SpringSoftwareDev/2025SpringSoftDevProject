@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/accounts");
 const Menu = require("../models/menuItem");
 const Reservation = require("../models/reservations");
+const Order = require("../models/order");
 const bcrypt = require("bcrypt");
 
 // Middleware functions for role-based access
@@ -76,7 +77,45 @@ router.post("/reservations", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/user/reservations", requireAuth, async (req, res) => {
+
+router.post("/cart", async (req, res) =>{
+  try{  
+    const { cart } = req.body;
+
+    if (!cart || !Array.isArray(cart) || cart.length === 0) {
+      return res.status(400).json({ error: "Cart is empty or invalid." });
+    }
+
+    if (!req.session.userId) {
+      return res.status(401).json({ error: "Unauthorized. Please log in." });
+    }
+
+    // Fetch user info (since name/email are not input fields)
+    const user = await User.findById(req.session.userId);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const orderMap = new Map();
+    cart.forEach(item => orderMap.set(item.name, item.quantity));
+    const orderObject = Object.fromEntries(orderMap);
+
+    const newOrder = new Order({
+      items: cart.reduce((acc, item) => {
+        acc[item.name] = item.quantity;
+        return acc;
+      }, {}),
+      userId: user.id,
+    });
+    await newOrder.save();
+
+    res.json({ message: "Order successfully placed!", orderId: newOrder._id });
+  } catch (error) {
+    console.error("Order Error", error);
+    res.status(500).json({ error: "Error Purchasing Cart." });
+  }
+});
+
+// Use reservations.find() to retrieve all info in JSON format
+router.get("/reservations", async (req, res) => {
   try {
     const userReservations = await Reservation.find({ userId: req.session.userId })
       .sort({ date: 1, time: 1 });
