@@ -6,15 +6,14 @@ const Reservation = require("../models/reservations");
 const Order = require("../models/order");
 const bcrypt = require("bcrypt");
 
-// lock routes to require an account access
+// Middleware functions for role-based access
 function requireAuth(req, res, next) {
   if (!req.session.userId) {
-    return res.redirect("/login");
+    return res.status(401).json({ error: "Not authenticated" });
   }
   next();
 }
 
-// lock routes to require employee access
 function employeeOnly(req, res, next) {
   requireAuth(req, res, () => {
     if (!["employee", "supervisor", "admin"].includes(req.session.role)) {
@@ -24,7 +23,6 @@ function employeeOnly(req, res, next) {
   });
 }
 
-// lock routes to require supervisor access
 function supervisorOnly(req, res, next) {
   requireAuth(req, res, () => {
     if (!["supervisor", "admin"].includes(req.session.role)) {
@@ -34,7 +32,6 @@ function supervisorOnly(req, res, next) {
   });
 }
 
-// lock routes to require admin access
 function adminOnly(req, res, next) {
   requireAuth(req, res, () => {
     if (req.session.role !== "admin") {
@@ -44,22 +41,7 @@ function adminOnly(req, res, next) {
   });
 }
 
-//
-// end of functions
-//
-
-// Add a new menu item
-router.post("/menu", async (req, res) => {
-  try {
-    const menuItem = new Menu(req.body);
-    await menuItem.save();
-    res.status(201).json(menuItem);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Use Menu.find() to retrieve all info in JSON format
+// Public routes
 router.get("/menu", async (req, res) => {
   try {
     const menuItems = await Menu.find();
@@ -69,24 +51,14 @@ router.get("/menu", async (req, res) => {
   }
 });
 
-//
-// user required
-//
-
+// User routes
 router.post("/reservations", requireAuth, async (req, res) => {
   try {
     const { date, time, guests, requests } = req.body;
-
-    // Ensure user is logged in
-    if (!req.session.userId) {
-      return res.status(401).json({ error: "Unauthorized. Please log in." });
-    }
-
-    // Fetch user info (since name/email are not input fields)
     const user = await User.findById(req.session.userId);
+    
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    // Create and save reservation
     const newReservation = new Reservation({
       userId: user._id,
       name: user.name,
@@ -145,19 +117,27 @@ router.post("/cart", async (req, res) =>{
 // Use reservations.find() to retrieve all info in JSON format
 router.get("/reservations", async (req, res) => {
   try {
-    const ReservationItems = await Reservation.find();
-    res.status(200).json(ReservationItems);
+    const userReservations = await Reservation.find({ userId: req.session.userId })
+      .sort({ date: 1, time: 1 });
+    res.status(200).json(userReservations);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error fetching user reservations:", error);
+    res.status(500).json({ error: "Error fetching reservations" });
   }
 });
 
-//
-// Supervisor requried
-//
+// Supervisor routes
+router.post("/menu", supervisorOnly, async (req, res) => {
+  try {
+    const menuItem = new Menu(req.body);
+    await menuItem.save();
+    res.status(201).json(menuItem);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
-// Update menu item availability
-router.patch("/menu/:id", async (req, res) => {
+router.patch("/menu/:id", supervisorOnly, async (req, res) => {
   try {
     const { available } = req.body;
     const updatedMenuItem = await Menu.findByIdAndUpdate(
@@ -171,8 +151,7 @@ router.patch("/menu/:id", async (req, res) => {
   }
 });
 
-// Delete menu item
-router.delete("/menu/:id", async (req, res) => {
+router.delete("/menu/:id", supervisorOnly, async (req, res) => {
   try {
     await Menu.findByIdAndDelete(req.params.id);
     res.json({ message: "Menu item deleted successfully!" });
@@ -181,26 +160,57 @@ router.delete("/menu/:id", async (req, res) => {
   }
 });
 
-//
-// Admin required
-//
-
-// Get all users, Admin
-router.get("/accounts", adminOnly, async (req, res) => {
+// Auth check endpoint
+router.get("/auth/check", requireAuth, async (req, res) => {
   try {
-    const users = await User.find({}, "name email role"); // Exclude passwords
-    res.json(users);
+    const user = await User.findById(req.session.userId).select("name email role");
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ 
+      name: user.name,
+      email: user.email,
+      role: user.role
+    });
+  } catch (error) {
+    console.error("Error checking auth:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Admin routes
+router.get("/accounts", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Only admin can see all users
+    if (user.role === "admin") {
+      const users = await User.find({}, "name email role");
+      return res.json(users);
+    }
+    
+    // Supervisor can see employees and customers
+    if (user.role === "supervisor") {
+      const users = await User.find(
+        { role: { $in: ["employee", "customer"] } },
+        "name email role"
+      );
+      return res.json(users);
+    }
+
+    // Regular users can only see their own info
+    res.json([{ name: user.name, email: user.email, role: user.role }]);
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).json({ error: "Error fetching users." });
   }
 });
 
-// Create a new user, Admin
 router.post("/accounts", adminOnly, async (req, res) => {
   try {
-    console.log("Received data:", req.body);
-
     const { name, email, password, role } = req.body;
     if (!name || !email || !password || !role) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -217,7 +227,6 @@ router.post("/accounts", adminOnly, async (req, res) => {
   }
 });
 
-// Delete a user, Admin
 router.delete("/accounts/:id", adminOnly, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);

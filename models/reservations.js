@@ -7,7 +7,7 @@ const reservationSchema = new mongoose.Schema({
     date: { type: String, required: true },
     time: { type: String, required: true },
     guests: { type: String, required: true },
-    requests: { type: String },
+    requests: { type: String }
 });
 
 module.exports = mongoose.model("Reservation", reservationSchema);

@@ -1,36 +1,120 @@
-body {
-  background-color: blanchedalmond;
-}
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px 30px;
-}
-.banner .logo {
-  font-size: 45px;
-  font-weight: bold;
-  font-family: script;
-  font-style: italic;
-  text-shadow: #da8637 1px 2px 2px;
-  color: #b87333;
+/* Global Variables */
+:root {
+  --theme-primary: #da8637;
+  --theme-secondary: #b87333;
+  --background-color: #ffebcd;
+  --text-color: #333;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --header-height: 150px; /* New variable for header height */
 }
 
-.banner .nav {
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  padding-top: var(--header-height); /* Add padding to prevent content overlap */
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: var(--header-height);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent),
+    url("http://zigis.com.au/wp-content/uploads/2014/05/holiday2013_front.jpg")
+      no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
-.banner .nav a {
-  font-size: 25px;
-  color: #225e16;
+
+.nav {
+  display: flex;
+  padding: 15px 50px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.nav .nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 70px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links li a {
   text-decoration: none;
-  padding: 2px 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
 }
-.banner .nav a:hover {
-  color: #b87333;
-  text-decoration: underline;
+
+.nav-links a:hover {
+  color: #ffa451;
+  font-size: 20px;
+  transform: scale(1.1);
 }
+
+.logo {
+  color: var(--theme-primary);
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;  
+  display: flex;
+  justify-content: center;
+  flex-grow: 0;
+  gap: 125px;
+  list-style: none;
+  padding: 10px;
+}
+
+.logo a {
+  color: var(--theme-primary);
+  text-decoration: none;
+}
+
+.login {
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: var(--theme-primary);
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.login a:hover {
+  font-size: 18px;
+  transform: scale(1.1);
+}
+
 
 @media (max-width: 768px) {
   .banner {

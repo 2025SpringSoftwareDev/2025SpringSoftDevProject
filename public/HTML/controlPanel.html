@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="The Copper Fork" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Copper Fork - Control Panel</title>
+    <link rel="stylesheet" href="/stylesheets/style copy.css" />
+    <style>
+      .button-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+      
+      .button-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: #da8637; /* Copper-ish */
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      
+      .button-link:hover {
+        background-color: #b87333;
+        transform: translateY(-2px);
+      }
+      
+      .button-link:active {
+        transform: scale(0.98);
+      }      
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="logo">
+          <a href="/">The Copper Fork</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/menu">MENU</a></li>
+          <li><a href="/User/reservation">RESERVATIONS</a></li>
+          <li><a href="/User/catering">CATERING</a></li>
+          <li><a href="/User/cart">CART</a></li>
+        </ul>
+        <div class="login">
+          <a href="/login">Login</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Control Panel</h1>
+      <div class="button-group">
+        <a href="/admin/accounts" class="button-link">Manage Accounts</a>
+        <a href="/supervisor/menu" class="button-link">Manage Menu</a>
+        <a href="/supervisor/reservations" class="button-link">Manage Reservation</a>
+      </div>
+    </div>
+    
+
+    <script>
+      // Function to check user role and adjust UI accordingly
+      async function checkUserRole() {
+        try {
+          const response = await fetch('/api/auth/check');
+          if (!response.ok) {
+            throw new Error('Failed to check user role');
+          }
+          const data = await response.json();
+          
+          if (data.role) {
+            document.getElementById('userRole').textContent = `Logged in as: ${data.role}`;
+            
+            // Hide admin-specific features for non-admin users
+            if (data.role !== 'admin') {
+              const adminFeatures = document.querySelectorAll('.admin-only');
+              adminFeatures.forEach(feature => feature.style.display = 'none');
+            }
+          }
+        } catch (error) {
+          console.error('Error checking user role:', error);
+          document.getElementById('userRole').textContent = 'Error loading role';
+        }
+      }
+      
+      // Load users and check role when the page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        loadUsers();
+        checkUserRole();
+      });
+    </script>
+  </body>
+</html>
