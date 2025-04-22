@@ -48,12 +48,6 @@ function adminOnly(req, res, next) {
 // no auth endpoints
 //
 
-// This is how we connect to a pug view
-// router.get('/', (req, res) => {
-//     res.render('index');
-// });
-
-// This is how we connect to  a html page
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/homepage.html"));
 });
@@ -87,14 +81,6 @@ router.get("/User/cart", requireAuth, (req, res) => {
 });
 
 //
-// employee+ auth required
-//
-
-router.get("/employee/dashboard", employeeOnly, (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/HTML/employeeDashboard.html"));
-});
-
-//
 // supervisor+ auth required
 //
 
@@ -110,6 +96,10 @@ router.get("/supervisor/menu", supervisorOnly, (req, res) => {
 
 router.get("/supervisor/reservations", supervisorOnly, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/HTML/supervisorReservation.html"));
+});
+
+router.get("/supervisor/orders", supervisorOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/HTML/supervisorOrders.html"));
 });
 
 //

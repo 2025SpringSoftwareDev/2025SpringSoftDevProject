@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="The Copper Fork" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Copper Fork - Order Management</title>
+    <link rel="stylesheet" href="../stylesheets/style copy.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="logo">
+          <a href="/controlPanel">Control Panel</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/menu">MENU</a></li>
+          <li><a href="/User/reservation">RESERVATIONS</a></li>
+          <li><a href="/User/catering">CATERING</a></li>
+          <li><a href="/User/cart">CART</a></li>
+        </ul>
+        <div class="login">
+          <a href="/login">Login</a>
+        </div>
+      </nav>
+    </header>
+
+    
+    <div class="container">
+      <h2>Order Management</h2>
+
+      <!-- Table to display orders -->
+      <table border="1">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>Items</th>
+            <th>Total Price</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="orderTableBody"></tbody>
+      </table>
+    </div>
+
+    <p id="message"></p>
+
+    <script>
+      // Fetch and display orders
+      async function loadOrders() {
+        try {
+          const response = await fetch("/api/orders");
+          const orders = await response.json();
+
+          const tableBody = document.getElementById("orderTableBody");
+          tableBody.innerHTML = "";
+
+          orders.forEach((order) => {
+            const row = document.createElement("tr");
+
+            // Convert items Map to readable list
+            const itemsList = Object.entries(order.items)
+              .map(([name, quantity]) => `${name} (x${quantity})`)
+              .join(", ");
+
+            const dateTime = new Date(order.time).toLocaleString();
+
+            row.innerHTML = `
+              <td>${order.userId?.name || "Unknown"}</td>
+              <td>${order.userId?.email || "Unknown"}</td>
+              <td>${itemsList}</td>
+              <td>$${order.totalPrice?.toFixed(2) || "0.00"}</td>
+              <td>${dateTime}</td>
+            `;
+
+            tableBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Error loading orders:", error);
+          document.getElementById("message").textContent =
+            "Unable to load orders. Please try again later.";
+        }
+      }
+      loadOrders();
+    </script>
+  </body>
+</html>

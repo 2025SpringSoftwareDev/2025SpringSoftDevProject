@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -50,7 +49,6 @@
     <p id="message"></p>
 
     <script>
-      // Fetch and display reservations
       async function loadReservations() {
         try {
           const response = await fetch("/api/reservations");
@@ -83,7 +81,6 @@
         }
       }
 
-      // Delete a reservation
       async function deleteReservation(reservationId) {
         if (!confirm("Are you sure you want to delete this reservation?"))
           return;
@@ -93,12 +90,11 @@
             method: "DELETE",
           });
 
-          loadReservations(); // Reload the table after deletion
+          loadReservations();
         } catch (error) {
           console.error("Error deleting reservation:", error);
         }
       }
-      // Load the reservations when the page loads
       loadReservations();
     </script>
   </body>

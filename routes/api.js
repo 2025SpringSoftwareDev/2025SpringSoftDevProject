@@ -51,33 +51,6 @@ router.get("/menu", async (req, res) => {
   }
 });
 
-// User routes
-router.post("/reservations", requireAuth, async (req, res) => {
-  try {
-    const { date, time, guests, requests } = req.body;
-    const user = await User.findById(req.session.userId);
-    
-    if (!user) return res.status(404).json({ error: "User not found" });
-
-    const newReservation = new Reservation({
-      userId: user._id,
-      name: user.name,
-      email: user.email,
-      date,
-      time,
-      guests,
-      requests,
-    });
-
-    await newReservation.save();
-    res.status(201).json({ message: "Reservation successful!" });
-  } catch (error) {
-    console.error("Error saving reservation:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-
 router.post("/cart", async (req, res) =>{
   try{  
     const { cart } = req.body;
@@ -114,8 +87,34 @@ router.post("/cart", async (req, res) =>{
   }
 });
 
+// User routes
+router.post("/reservations", requireAuth, async (req, res) => {
+  try {
+    const { date, time, guests, requests } = req.body;
+    const user = await User.findById(req.session.userId);
+    
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const newReservation = new Reservation({
+      userId: user._id,
+      name: user.name,
+      email: user.email,
+      date,
+      time,
+      guests,
+      requests,
+    });
+
+    await newReservation.save();
+    res.status(201).json({ message: "Reservation successful!" });
+  } catch (error) {
+    console.error("Error saving reservation:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Use reservations.find() to retrieve all info in JSON format
-router.get("/user/reservations", async (req, res) => {
+router.get("/user/reservations", requireAuth, async (req, res) => {
   try {
     const userReservations = await Reservation.find({ userId: req.session.userId })
       .sort({ date: 1, time: 1 });
@@ -126,17 +125,39 @@ router.get("/user/reservations", async (req, res) => {
   }
 });
 
+// i dont remember what or why this is
+router.get("/auth/check", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userId).select("name email role");
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ 
+      name: user.name,
+      email: user.email,
+      role: user.role
+    });
+  } catch (error) {
+    console.error("Error checking auth:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Supervisor routes
 
+// Get all reservations
 router.get("/reservations", supervisorOnly, async (req, res) => {
   try {
-    const allReservations = await Reservation.find().sort({ date: 1, time: 1 });
-    res.status(200).json(allReservations);
+    const reservations = await Reservation.find()
+      .sort({ date: 1, time: 1 }); // sort by date and time
+
+    res.status(200).json(reservations);
   } catch (error) {
-    console.error("Error fetching user reservations:", error);
+    console.error("Error fetching reservations:", error);
     res.status(500).json({ error: "Error fetching reservations" });
   }
 });
+
 
 router.post("/menu", supervisorOnly, async (req, res) => {
   try {
@@ -171,21 +192,16 @@ router.delete("/menu/:id", supervisorOnly, async (req, res) => {
   }
 });
 
-// Auth check endpoint
-router.get("/auth/check", requireAuth, async (req, res) => {
+router.get("/orders", supervisorOnly, async (req, res) => {
   try {
-    const user = await User.findById(req.session.userId).select("name email role");
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-    res.json({ 
-      name: user.name,
-      email: user.email,
-      role: user.role
-    });
+    const allOrders = await Order.find()
+      .populate("userId", "name email") // optional: populate user's name & email
+      .sort({ time: -1 }); // latest orders first
+
+    res.status(200).json(allOrders);
   } catch (error) {
-    console.error("Error checking auth:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Error fetching orders" });
   }
 });
 
