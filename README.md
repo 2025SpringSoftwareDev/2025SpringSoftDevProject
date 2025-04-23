@@ -49,8 +49,8 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
 # Project Architecture. 
 ### Web App
-- We will be using what we learned in WebApps. (pug and js) to build the Web App
-- **Tools/Software we will use: Pug, JS, host on Render**
+- We will be using what we learned in WebApps. HTML, CSS and JavaScript to build the Web App
+- **Tools/Software we will use: JS, host on Render**
 
 ### Database
 - needed for accounts (User, Employee, Supervisor)
