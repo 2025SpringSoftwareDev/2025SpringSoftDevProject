@@ -1,7 +1,7 @@
 # 2025SpringSoftDevProject
 Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
-# Screenshots, UML Diagram, Requirements and other assignments [here](assignment_documents)
+Screenshots, UML Diagram, Requirements, and other assignments [here](assignment_documents)
 
 ## User Stories grouped by key features:
 ---
