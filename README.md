@@ -3,6 +3,10 @@ Project Members: Carter Plenge, Jake Schellhorn, Landon Swavey, Jack Hillman
 
 Screenshots, UML Diagram, Requirements, and other assignments [here](assignment_documents)
 
+---
+# [Final report and screenshots here](/assignment_documents/Final%20Report.pdf)
+---
+
 ## User Stories grouped by key features:
 ---
 
